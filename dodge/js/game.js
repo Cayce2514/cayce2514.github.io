@@ -6,14 +6,15 @@ var enemyImage;
 var backgroundImage;
 
 function preload() {
-    playerImage = loadImage("https://i.imgur.com/N5uCbDu.png");
+//    playerImage = loadImage("https://i.imgur.com/N5uCbDu.png");
+    playerImage = loadImage("img/starshipdark-50x50.png");
     enemyImage = loadImage("https://i.imgur.com/OdL0XPt.png");
     backgroundImage = loadImage("https://i.imgur.com/aKQOg3G.png");
 }
 
 function setup() {
     isGameOver = false;
-    createCanvas(256, 256);
+    createCanvas(500, 500);
     player = createSprite(width/2, height-(playerImage.height/2), 0, 0);
     player.addImage(playerImage);
     enemy = createSprite(width/2, 0, 0, 0);
