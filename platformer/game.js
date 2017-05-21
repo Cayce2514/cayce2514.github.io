@@ -33,7 +33,12 @@ function setup() {
 
 function draw() {
     if (isGameOver) {
-
+    // for 6/17 meeting - "fixing up our game over screen"
+      background(0);
+      fill(255);
+      textAlign(CENTER);
+      text("Game Over! Click anywhere to restart", camera.position.x, camera.position.y);
+      
     } else {
     
     background(150, 200, 250);
