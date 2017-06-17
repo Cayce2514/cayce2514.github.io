@@ -1,18 +1,17 @@
-    var GRAVITY = 0.3;
-    var JUMP = -5;
-    var groundSprites;
-    var GROUND_SPRITE_WIDTH = 50;
-    var GROUND_SPRITE_HEIGHT = 50;
-    var numGroundSprites;
-
-    var player;
-    var obstacleSprites;
-
-    var isGameOver;
-
+var GRAVITY = 0.3;
+var JUMP = -5;
+var groundSprites;
+var GROUND_SPRITE_WIDTH = 50;
+var GROUND_SPRITE_HEIGHT = 50;
+var numGroundSprites;
+var player;
+var obstacleSprites;
+var isGameOver;
+var score;
 
 function setup() {
     isGameOver = false;
+    score = 0;
 
     createCanvas(400, 300);
     background(150, 200, 250);
@@ -37,6 +36,7 @@ function draw() {
       background(0);
       fill(255);
       textAlign(CENTER);
+      text("Your score was: " + score, camera.position.x, camera.position.y - 20);
       text("Game Over! Click anywhere to restart", camera.position.x, camera.position.y);
       
     } else {
@@ -70,7 +70,7 @@ function draw() {
     
     if (random() > 0.95) {
 
-      var obstacle = createSprite(camera.position.x + width, (height-50) - 15, 30, 30);
+      var obstacle = createSprite(camera.position.x + width, random(0, (height-50)-15), 30, 30);
       obstacleSprites.add(obstacle);
 
     }
@@ -83,7 +83,11 @@ function draw() {
     obstacleSprites.overlap(player, endGame);
 
     drawSprites();
-
+       
+    // Let's track our score
+    score = score + 1;
+    textAlign(CENTER);
+    text(score, camera.position.x, 10);
         
     }
 }
@@ -107,6 +111,7 @@ function mouseClicked() {
 
     obstacleSprites.removeSprites();
 
+    score = 0;
     isGameOver = false;
   }
 }
