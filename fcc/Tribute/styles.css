@@ -5,6 +5,7 @@ body {
 
 div {
   background-color: #FFFFFF;
+  border: 1px solid black;
   padding: 25px;
   margin: 25px;
   font-family: "Raleway", sans-serif;
