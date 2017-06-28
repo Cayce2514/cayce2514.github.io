@@ -1,5 +1,12 @@
 body {
   background-color: #8bb5a9;
+
+}
+
+div {
+  background-color: #FFFFFF;
+  padding: 25px;
+  margin: 25px;
   font-family: "Raleway", sans-serif;
 
 }
