@@ -5,9 +5,9 @@ body {
 
 div {
   background-color: #FFFFFF;
+  margin: 10px;
   border: 1px solid black;
-  padding: 5px;
-  margin: 25px;
+  padding: 25px;
   font-family: "Raleway", sans-serif;
 
 }
