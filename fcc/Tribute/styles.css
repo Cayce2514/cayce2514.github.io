@@ -13,5 +13,6 @@ div {
 }
 
 .image {
-  width: 200px;
+  width: 300px;
+  padding 25px;
 }
