@@ -13,7 +13,7 @@ function setup() {
     isGameOver = false;
     score = 0;
 
-    createCanvas(400, 300);
+    createCanvas(windowHeight,windowWidth)
     background(150, 200, 250);
     groundSprites = new Group();
 
@@ -68,7 +68,7 @@ function draw() {
       groundSprites.add(firstGroundSprite);
     }
     
-    if (random() > 0.95) {
+    if (random() > 0.97) {
 
       var obstacle = createSprite(camera.position.x + width, random(0, (height-50)-15), 30, 30);
       obstacleSprites.add(obstacle);
@@ -76,6 +76,8 @@ function draw() {
     }
     
     var firstObstacle = obstacleSprites[0];
+
+
     if (obstacleSprites.length > 0 && firstObstacle.position.x <= camera.position.x - (width/2 + firstObstacle.width/2)) {
       removeSprite(firstObstacle);
     }
