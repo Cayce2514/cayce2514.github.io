@@ -1,0 +1,18 @@
+body {
+  background-color: #8bb5a9;
+
+}
+
+div {
+  background-color: #FFFFFF;
+  margin: 25px;
+  border: 1px solid black;
+  padding: 25px;
+  font-family: "Raleway", sans-serif;
+
+}
+
+.image {
+  width: 300px;
+  text-align: "center";
+}
