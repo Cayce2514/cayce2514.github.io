@@ -43,4 +43,5 @@ function drawPointIfMousePressed() {
     drawPoint();
   }
 }
+
 }
