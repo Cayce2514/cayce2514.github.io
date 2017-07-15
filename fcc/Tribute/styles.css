@@ -12,7 +12,8 @@ div {
 
 }
 
-.image {
+img {
+  display: block;
   width: 300px;
-  text-align: "center";
+  margin: 0 auto;
 }
