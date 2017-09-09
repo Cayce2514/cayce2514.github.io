@@ -6,8 +6,8 @@ var enemyImage;
 var backgroundImage;
 
 function preload() {
-//    playerImage = loadImage("https://i.imgur.com/N5uCbDu.png");
-    playerImage = loadImage("img/starshipdark-50x50.png");
+    playerImage = loadImage("https://i.imgur.com/N5uCbDu.png");
+//    playerImage = loadImage("img/starshipdark-50x50.png");
     enemyImage = loadImage("https://i.imgur.com/OdL0XPt.png");
     backgroundImage = loadImage("https://i.imgur.com/aKQOg3G.png");
 }
