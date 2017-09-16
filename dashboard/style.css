@@ -1,8 +1,10 @@
 html {
-  max-width: 50em;
+  max-width: 100%;
   margin: 0 auto;
   padding: 10px;
-  font-family: Avenir Next, Helvetica, sans‐serif;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  white-space: pre;
 }
 
 a {
@@ -19,7 +21,12 @@ h1, h2, #news {
   font-weight: 300;
 }
 
-#news {
+#news1 {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+#news2 {
   font-size: 1.5em;
   line-height: 1.5em;
 }
