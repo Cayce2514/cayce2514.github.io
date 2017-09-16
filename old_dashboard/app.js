@@ -20,7 +20,7 @@ function loadWeather() {
 
   // API request:
     $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-      weather.text("Based on your current location, it is " + data.currently.temperature + "\u00B0F right now");
+      weather.text("Based on your current location, it is " + data.currently.temperature + "\u00B0F right now and wind is bearing " + data.currently.windBearing + " at " + data.currently.windSpeed + "mph.");
     });
   }
 
