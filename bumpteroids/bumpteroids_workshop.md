@@ -5,32 +5,36 @@ This workshop will show you how to use the P5.play libraries a bit more extensiv
 It will look something like this:
 ![Bumpteroids Example](https://cayce2514.github.io/bumpteroids/images/bumpteroids.png)
 
-Here's the [live demo](https://cayce2514.github.io/bumpteroids/) and [final code](https://github.com/Cayce2514/cayce2514.github.io/tree/master/bumpteroids).
+Here's the [live demo][final_live_demo and [final code][final_code].
+
+[final_live_demo]: https://cayce2514.github.io/bumpteroids/
+[final_code] :https://github.com/Cayce2514/cayce2514.github.io/tree/master/bumpteroids
 
 This workshop should take around 60 minutes.
 
-Table of contents:
-* [Part I: Setup][Part I: Setup]
-* [Part II: The HTML file][Part II: The HTML file]
-* [Part III: The CSS file][Part III: The CSS file]
-* [Part IV: The JavaScript File][Part IV: The JavaScript File]
-* [Part V: Hacking][Part V: Hacking]
-* [Part VI: Sharing][Part VI: Sharing]
+**Table of contents:**
 
-# [Part I: Setup]:Part I: Setup
+- [Part I: Setup](#part-i-setup)
+- [Part II: The HTML file][part-ii-The-html-file]
+- [Part III: The CSS file][part-iii-the-css-file]
+- [Part IV: The JavaScript File][part-iv-the-javascript-file]
+- [Part V: Hacking][part-v-Hacking]
+- [Part VI: Sharing][part-vi-sharing]
+
+## Part I: Setup
 Here's some text.
 
-# [Part II: The HTML file]:Part II: The HTML file
+## Part II: The HTML file
 Here's some more text.
 
-# [Part III: The CSS file]:Part III: The CSS file
+## Part III: The CSS file
 Here's some more text.
 
-# [Part IV: The JavaScript File]Part IV: The JavaScript File
+## Part IV: The JavaScript File
 Here's some more text.
 
-# [Part V: Hacking]Part V: Hacking
+## Part V: Hacking
 Here's some more text.
 
-# [Part VI: Sharing]Part VI: Sharing
+## Part VI: Sharing
 Here's some more text.
