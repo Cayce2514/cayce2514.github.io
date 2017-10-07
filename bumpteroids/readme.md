@@ -5,10 +5,8 @@ This workshop will show you how to use the P5.play libraries a bit more extensiv
 It will look something like this:
 ![Bumpteroids Example](https://cayce2514.github.io/bumpteroids/images/bumpteroids.png)
 
-Here's the [live demo][final_live_demo and [final code][final_code].
+Here's the [live demo](https://cayce2514.github.io/bumpteroids/) and [final code](https://github.com/Cayce2514/cayce2514.github.io/tree/master/bumpteroids).
 
-[final_live_demo]: https://cayce2514.github.io/bumpteroids/
-[final_code] :https://github.com/Cayce2514/cayce2514.github.io/tree/master/bumpteroids
 
 This workshop should take around 60 minutes.
 
