@@ -13,11 +13,11 @@ This workshop should take around 60 minutes.
 **Table of contents:**
 
 - [Part I: Setup](#part-i-setup)
-- [Part II: The HTML file](part-ii-the-html-file)
-- [Part III: The CSS file](part-iii-the-css-file)
-- [Part IV: The JavaScript File](part-iv-the-javascript-file)
-- [Part V: Hacking](part-v-hacking)
-- [Part VI: Sharing](part-vi-sharing)
+- [Part II: The HTML file](#part-ii-the-html-file)
+- [Part III: The CSS file](#part-iii-the-css-file)
+- [Part IV: The JavaScript File](#part-iv-the-javascript-file)
+- [Part V: Hacking](#part-v-hacking)
+- [Part VI: Sharing](#part-vi-sharing)
 
 ## Part I: Setup
 Here's some text.
