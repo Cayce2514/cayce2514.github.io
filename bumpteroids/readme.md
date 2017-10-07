@@ -23,9 +23,9 @@ This workshop should take around 60 minutes.
 
 ## Set up Folder and files
 
-1. Log in to your [Cloud 9](https://c9.io/) account and open your workspace.  If you haven't created your [Cloud 9](https://c9.io) account, go back to [Workshop 2[(https://hackclub.com/workshops/personal_website/) and step through it.
+1. Log in to your [Cloud 9](https://c9.io/) account and open your workspace.  If you haven't created your [Cloud 9](https://c9.io) account, go back to [Workshop 2](https://hackclub.com/workshops/personal_website/) and step through it.
 2. Create a new folder called "bumpteroids".
-3. Within the bumpteroids folder, create 3 new files.  index.html, style.css and the main file containing all of the game logic, bumpteroids.js.
+3. Within the bumpteroids folder, create 3 new files.  `index.html`, `style.css` and the main file containing all of the game logic, `bumpteroids.js`.
 
 (place image here of final)
 
