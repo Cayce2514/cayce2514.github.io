@@ -34,7 +34,7 @@ The HTML file is the main file that will be opened when someone goes to your gam
 
 We'll start out with our basic `index.html` file contents:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -50,7 +50,7 @@ In this section of code, we have only our document type and tags for `<html>` `<
 
 We add the details in our header to include the document title and bind our stylesheet file to our index.html file.  Your file should now look like this:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -68,7 +68,7 @@ Because we're using JavaScript for our game, and we'll use the P5.js and P5.play
 We will also define our main game logic for this gameWe do this within the `<body>` tags:
 
 
-```
+```html
   <body>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
       <script type="text/javascript" src="https://cdn.rawgit.com/molleindustria/p5.play/1bf3c72fe6b647617373b9b3ea3e419baaef8cfd/lib/p5.play.js"></script>
@@ -80,7 +80,7 @@ We will also define our main game logic for this gameWe do this within the `<bod
 
 Your `index.html` file should now look like this:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
