@@ -8,7 +8,7 @@ body {
 
 strong {
   font-weight:600;
-  
+
 }
 
 #bgCanvas {
@@ -31,8 +31,8 @@ strong {
   margin-bottom: 20px;
   margin-top: 30px;
   margin-left: -70px;
-  
-  
+
+
 }
 
 /* body links  */
@@ -52,7 +52,7 @@ a:active, a:hover, #reference a:hover {
 }
 
 #navMenu, #navMenu a {
-font-size:23px; 
+font-size:23px;
 color: #ED225D;
 }
 

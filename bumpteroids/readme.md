@@ -14,10 +14,9 @@ This workshop should take around 60 minutes.
 
 - [Part I: Setup](#part-i-setup)
 - [Part II: The HTML file](#part-ii-the-html-file)
-- [Part III: The CSS file](#part-iii-the-css-file)
-- [Part IV: The JavaScript File](#part-iv-the-javascript-file)
-- [Part V: Hacking](#part-v-hacking)
-- [Part VI: Sharing](#part-vi-sharing)
+- [Part III: The JavaScript File](#part-iii-the-javascript-file)
+- [Part IV: Hacking](#part-iv-hacking)
+- [Part V: Sharing](#part-v-sharing)
 
 ## Part I: Setup
 
@@ -25,7 +24,7 @@ This workshop should take around 60 minutes.
 
 1. Log in to your [Cloud 9](https://c9.io/) account and open your workspace.  If you haven't created your [Cloud 9](https://c9.io) account, go back to [Workshop 2](https://hackclub.com/workshops/personal_website/) and step through it.
 2. Create a new folder called "bumpteroids".
-3. Within the bumpteroids folder, create 3 new files.  `index.html`, `style.css` and the main file containing all of the game logic, `bumpteroids.js`.
+3. Within the bumpteroids folder, create 2 new files.  `index.html` and the main file containing all of the game logic, `bumpteroids.js`.
 
 (place image here of final)
 
@@ -55,7 +54,6 @@ We add the details in our header to include the document title and bind our styl
 <html>
   <head>
     <title>Bumpteroids Game</title>
-    <link href="styles.css" rel="stylesheet">
   </head>
   <body>
 
@@ -85,9 +83,6 @@ Your `index.html` file should now look like this:
 <html>
   <head>
     <title>Bumpteroids Game</title>
-
-    <!-- local CSS stylesheet -->
-    <link href="styles.css" rel="stylesheet">
   </head>
   <body>
       <!-- remote p5.js library location -->
@@ -103,14 +98,31 @@ Your `index.html` file should now look like this:
 ```
 
 
-## Part III: The CSS file
-Here's some more text.
+## Part III: The JavaScript File
+### Setup
+Setup and Draw Functions
 
-## Part IV: The JavaScript File
-Here's some more text.
+### Your Space Ship
 
-## Part V: Hacking
-Here's some more text.
+### Flying
+WASD
+Arrow Keys?
 
-## Part VI: Sharing
-Here's some more text.
+### Shooting
+
+### The Asteroids
+
+### Blowing Things Up
+
+
+
+## Part IV: Hacking
+Perhaps you can think of a few ways to improve on this classic game?
+
+Here are a few suggestions:
+1. Change the look!  Use free pre-created images to be your spaceship and asteroids.  Add a background.
+2. Keep score!  
+3. Make a top 10 scoreboard using Firebase!
+
+## Part V: Sharing
+Post to #shipit or Hack Club ship it site?
