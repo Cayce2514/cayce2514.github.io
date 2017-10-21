@@ -283,18 +283,104 @@ So, now, we can fly around, but there are a couple of problems.  Let's first sol
 
 To do this, we add an animation when we `addSpeed` and then when we stop going forward, we need to change the animation back to our "normal" view of our rocket.
 
-when we add an animation in our keyDown for "W", we have to wrap our if in braces {}. And, within the b
-
-And then, we'll go back down to our keyDown section in our `draw()` function and add an "else condition"
+when we add an animation in our keyDown for "W", we have to wrap our if in braces {} to keep it interpreted as being part of the if statement. And, within the braces add the line to use the thrust animation, the series of images that you uploaded earlier. We'll also add an "else condition" to turn the ship image to the regular ship.
 
 ```javascript
-else
-  ship.changeAnimation("normal");
+if(keyDown("W"))
+    {
+    ship.addSpeed(.2, ship.rotation);
+    ship.changeAnimation("thrust");
+    }
+  else
+    ship.changeAnimation("normal");
 ```
 
+And we need to define what to do when the "trust" label is called.  We add, as before, in the `setup()` function with the "normal" `addImage` label, an animation to the ship for "thrust." Add the line just below the existing `addImage` and we give it a list of images rather than just one:
 
+```javascript
+// this is the existing line below
+ship.addImage("normal", shipImage);
+
+ship.addAnimation("thrust", "images/asteroids_ship0002.png", "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png", "images/asteroids_ship0007.png");
+```
+
+Of course, if you looked at this screen, you wouldn't necessarily know to use W, A, S and D keys.  So, we should probably tell our gamers what's up...
+
+Add some text in the top right to convey the message.
+
+Just inside our `draw()` function, add the following line:
+
+```javascript
+// put under your existing draw()
+function draw() {
+  background(254,248,248);
+
+  //how do we control our ship
+  text("W + A + D keys to move. K to shoot", width-30, 30);
+
+...
+}
+```
+
+Of course, it doesn't look great.  We'll want to align it to the right margin, set the font size and the color to match our spaceship.  So, we add those before the text:
+
+```javascript
+function draw() {
+  // set the canvas background
+  background(254,248,248);
+
+  // set the text fill
+  fill(254,190,190);
+
+  // set the text alignment
+  textAlign(RIGHT);
+
+  // set the text size
+  textSize(12);
+
+  //set the text
+  text("W + A + D keys to move.", width-30, 30);
+}
+```
 
 #### Universe Wrapping
+Because we have a small view into the universe that is limited to our canvas size, we need to figure out how we can prevent our ship from flying outside the boundaries, or teleport to the opposite side of our canvas in a sort of "wrap around."
+
+We do this by some magical math calculations!  Since we can see that the spaceship continues on, we can expect that any sprite we put on our canvas will behave the same way.  So, we should apply this universe wrapping to all of the sprites.  Place this new code below the W, A, S, D text in the `draw()` function.
+
+```javascript
+// existing code for the W, A, S, D text
+text("W + A + D keys to move.", width-30, 30);
+
+// place this new code below it.
+
+// set up a for loop based on the length of any sprite
+for(var i=0; i<allSprites.length; i++) {
+  // create an array for each individual sprite
+  var s = allSprites[i];
+
+  // If the sprite's x position is less than or equal to 0 (the left edge),
+  // then set the new x position to the value of the width of the window (on the right)
+  if(s.position.x<-0) s.position.x = width;
+
+  // If the sprite's x position is greater than the width of the windows (right edge)
+  // then set the new x position to be 0 (left edge)
+  if(s.position.x>width) s.position.x = 0;
+
+  // If the sprite's y position is less than or equal to 0 (the top)
+  // then set the new y position to be the height of the window (the bottom)
+  if(s.position.y<-0) s.position.y = height;
+
+  // If the sprite's y position is greater than the windows's height (bottom)
+  // then set the new y position to be 0 (the top)
+  if(s.position.y>height) s.position.y = 0;
+}
+```
+
+So.... uh...  well, if you haven't noticed already, our ship can get going incredibly fast and it won't ever stop.  Newton's first law of motion...
+
+In the game world, we can fix these broken laws of physics.
+
 
 #### Speed and Friction
 
@@ -304,19 +390,22 @@ set a maxSpeed property to ship just under where we created the ship sprite abov
 
 ```javascript
 ship = createSprite(width/2, height/2);
+
+// set our maxSpeed to 6. 6 what? 6 speed.
 ship.maxSpeed = 6;
 ```
+Whew.  That's better.  Acceleration to the speed of light is fast, but terrible on your body!
 
-let's also decide what happens when we let the "W" key go.  We'll have to allow the ship to stop (by creating friction). Put the `friction` property just under the `maxSpeed` property:
+let's also decide what happens when we let the "W" key go. Right now, it stays in motion.  We should allow the ship to stop (by creating friction). Put the `friction` property just under the `maxSpeed` property:
 
 ```javascript
-ship = createSprite(width/2, height/2);
-ship.maxSpeed = 6;
-ship.friction = .98;
+  ship = createSprite(width/2, height/2);
+  // set our maxSpeed to 6. 6 what? 6 speed.
+  ship.maxSpeed = 6;
+  // set friction to allow our ship to eventually slow to a stop
+  ship.friction = .98;
 ```
 
-WASD
-Arrow Keys?
 
 ### Shooting
 
