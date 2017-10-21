@@ -1,6 +1,6 @@
 # Bumpteroids
 
-This workshop will show you how to use the P5.play libraries a bit more extensively to create a game similar to the classic game Asteroids.
+This workshop will show you how to use the P5.play libraries a bit more extensively to create a game similar to the classic game Asteroids.  This game, as it is, appears as a background for the P5.Play website at Molle Industria [here](http://p5play.molleindustria.org/).
 
 It will look something like this:
 ![Bumpteroids Example](https://cayce2514.github.io/bumpteroids/images/bumpteroids.png)
@@ -130,6 +130,19 @@ function draw() {
 ```
 
 ### Your Space Ship
+So now we have to decide on our ship.  Let's play with some images.  We have our basic ship image:
+
+![Basic Ship](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0001.png)
+
+Fairly simple design. See [Part IV: Hacking](#part-iv-hacking) for where you can find more free to use art.
+
+We will also use an image that shows the same body of the space ship, but a bit of rocket flare:
+
+![Ship with Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
+
+If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use a second image of the ship with rocket flare, and the rocket flare is a bit different.  Fires never keep the same shape, our rocket shouldn't either.  Here's the second rocket with flare image:
+
+![Ship with another Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0007.png)
 
 ### Flying
 WASD
