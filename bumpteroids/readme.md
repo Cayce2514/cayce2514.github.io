@@ -47,7 +47,9 @@ We'll start out with our basic `index.html` file contents:
 
 In this section of code, we have only our document type and tags for `<html>` `<head>` for the page header and `<body>` for the document body.  Each tag also has it's closing tags `</head>`, `</body>`, and `</html>`.
 
-We add the details in our header to include the document title and bind our stylesheet file to our index.html file.  Your file should now look like this:
+Put this code into your `index.html` on Cloud 9.
+
+Now, we add the details in our header to include the document title and bind our stylesheet file to our index.html file.  Your file should now look like this:
 
 ```html
 <!DOCTYPE html>
@@ -63,7 +65,7 @@ We add the details in our header to include the document title and bind our styl
 
 Because we're using JavaScript for our game, and we'll use the P5.js and P5.play library as in previous Hack Club workshops, we need to tell our `index.html` file to bind them and point to where on the internet the libraries are found.
 
-We will also define our main game logic for this gameWe do this within the `<body>` tags:
+We will also define our main game logic for this game by pointing to our `bumpteroids.js` file.  We do this within the `<body>` tags:
 
 
 ```html
@@ -76,7 +78,7 @@ We will also define our main game logic for this gameWe do this within the `<bod
 ```
 
 
-Your `index.html` file should now look like this:
+Your `index.html` file should now look something like this (I've added comments for a bit more clarity):
 
 ```html
 <!DOCTYPE html>
@@ -97,6 +99,9 @@ Your `index.html` file should now look like this:
 </html>
 ```
 
+Test load your file by going to the live preview in Cloud 9.
+
+A blank screen with no errors is exactly what we're looking for.  Now, let's work on our JavaScript file.
 
 ## Part III: The JavaScript File
 ### Setup the file and canvas
@@ -129,8 +134,10 @@ function draw() {
 }
 ```
 
+When you save your file `ctrl+s` you should now see a slightly off white canvas in your preview window.
+
 ### Your Space Ship
-So now we have to decide on our ship.  Let's play with some images.  We have our basic ship image:
+So now we have to decide on our ship.  Let's start with some images.  We have our basic ship image:
 
 ![Basic Ship](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0001.png)
 
@@ -140,7 +147,7 @@ We will also use an image that shows the same body of the space ship, but a bit 
 
 ![Ship with Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
 
-If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use more images of the ship with rocket flare, in an animation, and the rocket flare is a bit different across the animation.  Fires never keep the same shape, our rocket shouldn't either.  Here's all the rockets with flare image in order, imagine cycling through each of these.  We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image. That's how animation works!
+If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use more images of the ship with rocket flare, in an animation, and the rocket flare is a bit different across the animation.  Fires never keep the same shape, right? Our rocket shouldn't either.  Here's all the rockets with flare image in order, imagine cycling through each of these.  We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image. That's how animation works!
 
 ![Ship with a second Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
 ![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0003.png)
@@ -149,8 +156,6 @@ If you look closely to the live demo, the rocket flare isn't just solid, it seem
 ![Ship with a fifth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0005.png)
 ![Ship with a sixth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0006.png)
 ![Ship with a seventh Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0007.png)
-
-We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image.
 
 Download all of these images locally and then upload to Cloud 9 into an `images` directory.
 
