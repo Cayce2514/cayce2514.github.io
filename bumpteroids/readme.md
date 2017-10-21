@@ -156,9 +156,9 @@ If you look closely to the live demo, the rocket flare isn't just solid, it seem
 ![Ship with a sixth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0006.png)
 ![Ship with a seventh Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0007.png)
 
-Download all of these images locally and then upload to Cloud 9 into an `images` directory.
+Download all of these images locally by right clicking on them and selecting "Save Image As..." and then upload to Cloud 9 into an `images` directory.  You should have 7 ship images total.
 
-So, let's put the first spaceship in our code.
+Now, let's put the first spaceship in our code.
 
 We'll need a variable to hold the image.  That'll go at the top of our code before the function setup:
 
@@ -202,22 +202,34 @@ function setup() {
 
 Because the origin of our canvas grid system starts at (0,0) in the top left, by using width divided by 2, we put the ship in the middle of the canvas width and similar for the height. In our code above, we've set the sprite to be in the middle of the canvas' width and height.
 
-Now let's map our ship image (the non-trust image) to be bound to the image sprite:
+Now let's map our ship image variable to be bound to the image file (the non-trust image file) we uploaded...  
 
+```javascript
+shipImage = loadImage("images/asteroids_ship0001.png");
+```
+...and bind the shipImage variable to the ship sprite by defining the `shipImage` as a property of the `ship` variable (aka "object"):
+
+```javascript
+ship.addImage("normal", shipImage);
+```
+
+Your setup function should now look like this:
 ```javascript
 
 function setup() {
   // you already had the create canvas, put the ship sprite below
   createCanvas(windowWidth, windowHeight);
 
+  ship = createSprite(width/2, height/2);
+
   shipImage = loadImage("images/asteroids_ship0001.png");
 
-  ship = createSprite(width/2, height/2);
+  ship.addImage("normal", shipImage);
 
 }
 ```
 
-If you notice, we're putting images in an images directory.
+The `addImage` property requires two parameters.  a "label" which we can use to reference this object, and the reference to the image file itself which we're storing in the `shipImage` variable.
 
 Now, to make the ship appear in our canvas, we have to draw it.  Where should we draw our sprites?  In the `draw()` function of course!
 
@@ -225,13 +237,84 @@ Now, to make the ship appear in our canvas, we have to draw it.  Where should we
 
 // Drawing happens in the draw function
 function draw() {
-  drawSprites;
+  drawSprites();
 }
+```
+
+Congratulations!  You now have a ship!  But it just sits there.  Not doing anything.  That's kinda boring.
+
+Let's make it fly!
+
+### Flying
+We are going to use keyboard control to fly our ship.  we should use something that is common in controlling things and traveling through games.  How about we use W, A, S and D to move?
+
+#### Hard to Starboard!!
+We'll start out with rotation of our ship left and right.
+
+Because these keyboard actions re-draw things on the screen, we'll place the code in the `draw()` function.  We'll use the `keyDown` property in an `if` condition to capture the key, then apply the `rotation` property to our ship.
+
+Place our code above the drawSprites() method:
+
+```javascript
+  // rotate left
+  if(keyDown("A"))
+    ship.rotation -= 4;
+
+  // rotate right
+  if(keyDown("D"))
+    ship.rotation += 4;
+
+// before the drawSprites() method
+  drawSprites();
+```
+
+#### Full Speed Ahead!!
+
+Now, let's go somewhere.  as you remember, we use an (x,y) coordinate system.  So, we need to tell our ship to move along it very much like we told our ship how to rotate left and right.
+
+P5.play has done us the favor of including an easy library property to map all of these coordinates using the `addSpeed(speed, angle)` property that we'll add to our ship.  Set the speed parameter to .2. To determine the angle, we'll point to whatever the current rotation is of our ship.  Put this code under our "D" keyDown condition.
+
+```javascript
+  if(keyDown("W"))
+    ship.addSpeed(.2, ship.rotation);
+```
+
+So, now, we can fly around, but there are a couple of problems.  Let's first solve the problem that we aren't showing our thrust flame from the rocket thruster.
+
+To do this, we add an animation when we `addSpeed` and then when we stop going forward, we need to change the animation back to our "normal" view of our rocket.
+
+when we add an animation in our keyDown for "W", we have to wrap our if in braces {}. And, within the b
+
+And then, we'll go back down to our keyDown section in our `draw()` function and add an "else condition"
+
+```javascript
+else
+  ship.changeAnimation("normal");
 ```
 
 
 
-### Flying
+#### Universe Wrapping
+
+#### Speed and Friction
+
+Let's set some limits to how fast it can go.
+
+set a maxSpeed property to ship just under where we created the ship sprite above setup:
+
+```javascript
+ship = createSprite(width/2, height/2);
+ship.maxSpeed = 6;
+```
+
+let's also decide what happens when we let the "W" key go.  We'll have to allow the ship to stop (by creating friction). Put the `friction` property just under the `maxSpeed` property:
+
+```javascript
+ship = createSprite(width/2, height/2);
+ship.maxSpeed = 6;
+ship.friction = .98;
+```
+
 WASD
 Arrow Keys?
 
