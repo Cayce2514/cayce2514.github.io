@@ -21,7 +21,7 @@ ship.friction = .98;
 ship.setCollider("circle", 0,0, 20);
 
 ship.addImage("normal", shipImage);
-ship.addAnimation("thrust", "images/asteroids_ship0002.png", "images/asteroids_ship0007.png");
+ship.addAnimation("thrust", "images/asteroids_ship0002.png", , "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png","images/asteroids_ship0007.png");
 
 asteroids = new Group();
 bullets = new Group();
@@ -41,7 +41,7 @@ function draw() {
   textAlign(RIGHT);
   textSize(12);
   text("W + A + D keys to move. K to shoot", width-30, 30);
-  
+
   for(var i=0; i<allSprites.length; i++) {
   var s = allSprites[i];
   if(s.position.x<-MARGIN) s.position.x = width+MARGIN;
@@ -49,11 +49,11 @@ function draw() {
   if(s.position.y<-MARGIN) s.position.y = height+MARGIN;
   if(s.position.y>height+MARGIN) s.position.y = -MARGIN;
   }
-  
+
   asteroids.overlap(bullets, asteroidHit);
-  
+
   ship.bounce(asteroids);
-  
+
   if(keyDown("A"))
     ship.rotation -= 4;
   if(keyDown("D"))
@@ -65,7 +65,7 @@ function draw() {
     }
   else
     ship.changeAnimation("normal");
-    
+
   if(keyWentDown("k"))
     {
     var bullet = createSprite(ship.position.x, ship.position.y);
@@ -74,9 +74,9 @@ function draw() {
     bullet.life = 30;
     bullets.add(bullet);
     }
-  
+
   drawSprites();
-  
+
 }
 
 function createAsteroid(type, x, y) {
@@ -87,12 +87,12 @@ function createAsteroid(type, x, y) {
   a.rotationSpeed = .5;
   //a.debug = true;
   a.type = type;
-  
+
   if(type == 2)
     a.scale = .6;
   if(type == 1)
     a.scale = .3;
-  
+
   a.mass = 2+a.scale;
   a.setCollider("circle", 0, 0, 50);
   asteroids.add(a);
