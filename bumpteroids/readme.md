@@ -99,8 +99,35 @@ Your `index.html` file should now look like this:
 
 
 ## Part III: The JavaScript File
-### Setup
-Setup and Draw Functions
+### Setup the file and canvas
+For every project with the P5 libraries, we'll start with two main JavaScript functions, `setup()` and `draw()`.
+
+In your `bumpteroids.js` file, create those functions like this:
+
+```javascript
+
+function setup() {
+
+}
+
+function draw() {
+
+}
+```
+Now that we have the basic structure, we can define our canvas to be the entire width and height of our browser window in the `setup()` function, and we will set our canvas color to be almost pure white in the `draw()` function:
+
+```javascript
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+}
+
+function draw() {
+  background(254,248,248);
+
+}
+```
 
 ### Your Space Ship
 
