@@ -140,9 +140,92 @@ We will also use an image that shows the same body of the space ship, but a bit 
 
 ![Ship with Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
 
-If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use a second image of the ship with rocket flare, and the rocket flare is a bit different.  Fires never keep the same shape, our rocket shouldn't either.  Here's the second rocket with flare image:
+If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use more images of the ship with rocket flare, in an animation, and the rocket flare is a bit different across the animation.  Fires never keep the same shape, our rocket shouldn't either.  Here's all the rockets with flare image in order, imagine cycling through each of these.  We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image. That's how animation works!
 
-![Ship with another Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0007.png)
+![Ship with a second Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
+![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0003.png)
+![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0003.png)
+![Ship with a fourth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0004.png)
+![Ship with a fifth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0005.png)
+![Ship with a sixth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0006.png)
+![Ship with a seventh Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0007.png)
+
+We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image.
+
+Download all of these images locally and then upload to Cloud 9 into an `images` directory.
+
+So, let's put the first spaceship in our code.
+
+We'll need a variable to hold the image.  That'll go at the top of our code before the function setup:
+
+```javascript
+// declare global variables at the top
+// so that we can use them in all our functions
+var shipImage;
+
+function setup() {
+  // rest of the code below
+}
+```
+
+If you remember from our previous workshops using P5, each image we use takes the place of the a sprite object.  The sprite object is really what makes it work.  The images make it work and look pretty at the same time.
+
+So, let's add a variable to be our sprite.
+
+```javascript
+// declare global variables at the top
+// so that we can use them in all our functions
+var ship;
+var shipImage;
+
+function setup() {
+  // rest of the code below
+}
+```
+
+We do the actual creation of the sprite and set its starting position and the size in the setup function.
+
+```javascript
+
+function setup() {
+  // you already had the create canvas, put the ship sprite below
+  createCanvas(windowWidth, windowHeight);
+
+  ship = createSprite(width/2, height/2);
+
+}
+```
+
+Because the origin of our canvas grid system starts at (0,0) in the top left, by using width divided by 2, we put the ship in the middle of the canvas width and similar for the height. In our code above, we've set the sprite to be in the middle of the canvas' width and height.
+
+Now let's map our ship image (the non-trust image) to be bound to the image sprite:
+
+```javascript
+
+function setup() {
+  // you already had the create canvas, put the ship sprite below
+  createCanvas(windowWidth, windowHeight);
+
+  shipImage = loadImage("images/asteroids_ship0001.png");
+
+  ship = createSprite(width/2, height/2);
+
+}
+```
+
+If you notice, we're putting images in an images directory.
+
+Now, to make the ship appear in our canvas, we have to draw it.  Where should we draw our sprites?  In the `draw()` function of course!
+
+```javascript
+
+// Drawing happens in the draw function
+function draw() {
+  drawSprites;
+}
+```
+
+
 
 ### Flying
 WASD
