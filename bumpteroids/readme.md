@@ -139,23 +139,23 @@ When you save your file `ctrl+s` you should now see a slightly off white canvas 
 ### Your Space Ship
 So now we have to decide on our ship.  Let's start with some images.  We have our basic ship image:
 
-![Basic Ship](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0001.png)
+![Basic Ship](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0001.png)
 
 Fairly simple design. See [Part IV: Hacking](#part-iv-hacking) for where you can find more free to use art.
 
 We will also use an image that shows the same body of the space ship, but a bit of rocket flare:
 
-![Ship with Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
+![Ship with Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0002.png)
 
 If you look closely to the live demo, the rocket flare isn't just solid, it seems to flutter a bit.  That's because we use more images of the ship with rocket flare, in an animation, and the rocket flare is a bit different across the animation.  Fires never keep the same shape, right? Our rocket shouldn't either.  Here's all the rockets with flare image in order, imagine cycling through each of these.  We get the fluttering appearance by switching between these rocket flare images faster than our eyes can see that we've replaced the image. That's how animation works!
 
-![Ship with a second Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0002.png)
-![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0003.png)
-![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0003.png)
-![Ship with a fourth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0004.png)
-![Ship with a fifth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0005.png)
-![Ship with a sixth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0006.png)
-![Ship with a seventh Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids_old/images/asteroids_ship0007.png)
+![Ship with a second Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0002.png)
+![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0003.png)
+![Ship with a third Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0003.png)
+![Ship with a fourth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0004.png)
+![Ship with a fifth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0005.png)
+![Ship with a sixth Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0006.png)
+![Ship with a seventh Rocket Flare](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_ship0007.png)
 
 Download all of these images locally and then upload to Cloud 9 into an `images` directory.
 
