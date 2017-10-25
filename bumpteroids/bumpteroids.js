@@ -21,7 +21,7 @@ ship.friction = .98;
 ship.setCollider("circle", 0,0, 20);
 
 ship.addImage("normal", shipImage);
-ship.addAnimation("thrust", "images/asteroids_ship0002.png", , "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png","images/asteroids_ship0007.png");
+ship.addAnimation("thrust", "images/asteroids_ship0002.png", "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png","images/asteroids_ship0007.png");
 
 asteroids = new Group();
 bullets = new Group();
