@@ -81,7 +81,7 @@ function draw() {
 
 function createAsteroid(type, x, y) {
   var a = createSprite(x, y);
-  var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
+  var img  = loadImage("images/asteroid"+floor(random(0,30))+".png");
   a.addImage(img);
   a.setSpeed(1.5-(type/2), random(360));
   a.rotationSpeed = .5;
