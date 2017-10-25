@@ -5,7 +5,7 @@ var bullets;
 var asteroids;
 var ship;
 var shipImage, bulletImage, particleImage;
-var MARGIN = 40;
+var MARGIN = 10;
 
 function setup() {
 createCanvas(windowWidth, windowHeight);
