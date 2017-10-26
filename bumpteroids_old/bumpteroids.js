@@ -16,7 +16,7 @@ shipImage = loadImage("images/asteroids_ship0001.png");
 particleImage = loadImage("images/asteroids_particle.png");
 
 ship = createSprite(width/2, height/2);
-ship.maxSpeed = 6;
+ship.maxSpeed = 10;
 ship.friction = .98;
 ship.setCollider("circle", 0,0, 20);
 
