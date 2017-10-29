@@ -1,4 +1,4 @@
-var bullet;
+var bullets;
 var ship;
 var shipImage;
 var bulletImage;
@@ -82,7 +82,7 @@ function draw() {
   else
     ship.changeAnimation("normal");
   
-  if(keyWentDown("k"))
+  if(keyDown("k"))
     {
     var bullet = createSprite(ship.position.x, ship.position.y);
     bullet.addImage(bulletImage);
