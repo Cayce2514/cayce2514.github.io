@@ -75,6 +75,11 @@ function draw() {
   else
     ship.changeAnimation("normal");
   
+    if(keyWentDown("k"))
+    {
+    var bullet = createSprite(ship.position.x, ship.position.y);
+
+    }
     
   drawSprites();
 
