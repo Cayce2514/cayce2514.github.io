@@ -409,6 +409,69 @@ let's also decide what happens when we let the "W" key go. Right now, it stays i
 
 ### Shooting
 
+#### Create and assign the bullet image
+Guns can make a game pretty fun.  In this game, we'll put a single gun on the front of our spaceship and make it shoot in the direction of the spaceship.
+
+Just like the spaceship, we need to create two variables.  One for the bullets, and one for the bullet image.  The bullets variable is actually going to be a `Group()` of bullets.
+
+At the top of your javascript file, just above your ship variable, create these variables:
+```javascript
+// shipImage already exists
+var shipImage;
+
+// new variables for the bullets
+var bullets;
+var bulletImage;
+```
+
+As we mentioned before, we're using bullets as a group. Think of it as a kind of an array, but each bullet is an individual entity traveling at a velocity in a direction (depending on how you rotate your ship) for a particular time, or lifespan.
+
+place the `new Group();` constructor at the end of the `setup()` function, but before the }.  If you don't put it before the }, your spaceship will disappear when you press "K" to shoot.
+
+```javascript
+bullets = new Group();
+
+}
+```
+
+Let's now set the image for the bullet.  It's just a small little bit with a transparent background.  You can download it here:
+![Bullet Image](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroids_bullet.png)
+
+Upload it into your images folder in Cloud 9.
+
+Now, let's bind the image to the `bulletImage` variable and put it under the existing shipImage assignment:
+
+```javascript
+// existing shipImage assignment
+shipImage = loadImage("images/asteroids_ship0001.png");
+
+// new bulletImage assignment
+bulletImage = loadImage("images/asteroids_bullet.png");
+```
+
+
+#### Assign a key to shoot with and actions
+
+We're going to use the letter "k" in this game.  You can assign it to whatever you like at another time.  Space is a good alternative.  Perhaps you can add options for left and right handed gamers afterwards?
+
+We'll set up an if condition just like we did with "W", "A", and "D."  Place this underneath your other if conditions for keys and before the `drawSprites()` method call.
+```javascript
+if(keyWentDown("k"))
+  {
+
+  }
+```
+
+As we discussed earlier, we are creating a `Group()` of bullets.  If we already have a group of bullets stored in the variable `bullets`, then we'll need a variable for the individual `bullet`.
+
+We'll create a local variable for bullet.  A local variable is used inside of a function, loop, method, or condition that can be used within that function, loop, method, or condition, but it can't be used by anything outside of that function, loop, method, or condition.
+
+Let's create the `bullet` variable inside the if condition that will become the bullet object holding the (x, y) position data.
+```javascript
+
+
+
+
 ### The Asteroids
 
 ### Blowing Things Up
