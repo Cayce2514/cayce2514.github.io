@@ -5,7 +5,7 @@ var bullets;
 var asteroids;
 var ship;
 var shipImage, bulletImage, particleImage;
-var MARGIN = 40;
+var MARGIN = 0;
 
 function setup() {
 createCanvas(windowWidth, windowHeight);
@@ -16,12 +16,18 @@ shipImage = loadImage("images/asteroids_ship0001.png");
 particleImage = loadImage("images/asteroids_particle.png");
 
 ship = createSprite(width/2, height/2);
-ship.maxSpeed = 6;
+ship.maxSpeed = 100;
 ship.friction = .98;
 ship.setCollider("circle", 0,0, 20);
 
 ship.addImage("normal", shipImage);
-ship.addAnimation("thrust", "images/asteroids_ship0002.png", , "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png","images/asteroids_ship0007.png");
+ship.addAnimation("thrust",
+"images/asteroids_ship0002.png",
+"images/asteroids_ship0003.png",
+"images/asteroids_ship0004.png",
+"images/asteroids_ship0005.png",
+"images/asteroids_ship0006.png",
+"images/asteroids_ship0007.png");
 
 asteroids = new Group();
 bullets = new Group();
@@ -71,7 +77,7 @@ function draw() {
     var bullet = createSprite(ship.position.x, ship.position.y);
     bullet.addImage(bulletImage);
     bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
-    bullet.life = 30;
+    bullet.life = 200;
     bullets.add(bullet);
     }
 

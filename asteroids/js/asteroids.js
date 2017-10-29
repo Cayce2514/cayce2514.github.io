@@ -1,22 +1,19 @@
 var bullets;
 var ship;
-var shipImage;
-var bulletImage;
-
+var shipImage;bulletImage;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  ship = createSprite(width/2, height/2);
+  bulletImage = loadImage("images/asteroids_bullet.png");
+  shipImage = loadImage("images/asteroids_ship0001.png");
 
+  ship = createSprite(width/2, height/2);
   // set our maxSpeed to 6. 6 what? 6 speed.
   ship.maxSpeed = 6;
   // set friction to allow our ship to eventually slow to a stop
   ship.friction = .98;
   
-  bulletImage = loadImage("images/asteroids_bullet.png");
-  
-  shipImage = loadImage("images/asteroids_ship0001.png");
   ship.addImage("normal", shipImage);
   ship.addAnimation("thrust", 
     "images/asteroids_ship0002.png", 
@@ -26,9 +23,9 @@ function setup() {
     "images/asteroids_ship0006.png", 
     "images/asteroids_ship0007.png");
 
-}
 
 bullets = new Group();
+}
 
 function draw() {
   background(254,248,248);
@@ -82,15 +79,16 @@ function draw() {
   else
     ship.changeAnimation("normal");
   
-  if(keyDown("k"))
-    {
+  if(keyWentDown("k"))
+  {
     var bullet = createSprite(ship.position.x, ship.position.y);
     bullet.addImage(bulletImage);
     bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
     bullet.life = 30;
     bullets.add(bullet);
-    }
+  }
     
   drawSprites();
 
 }
+
