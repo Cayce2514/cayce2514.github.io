@@ -8,7 +8,7 @@ It will look something like this:
 Here's the [live demo](https://cayce2514.github.io/bumpteroids/) and [final code](https://github.com/Cayce2514/cayce2514.github.io/tree/master/bumpteroids).
 
 
-This workshop should take around 60 minutes.
+This workshop should take around ?? minutes.
 
 **Table of contents:**
 
@@ -456,7 +456,7 @@ We're going to use the letter "k" in this game.  You can assign it to whatever y
 
 We'll set up an if condition just like we did with "W", "A", and "D."  Place this underneath your other if conditions for keys and before the `drawSprites()` method call.
 ```javascript
-if(keyWentDown("k"))
+if(keyWentDown("K"))
   {
 
   }
@@ -466,11 +466,71 @@ As we discussed earlier, we are creating a `Group()` of bullets.  If we already 
 
 We'll create a local variable for bullet.  A local variable is used inside of a function, loop, method, or condition that can be used within that function, loop, method, or condition, but it can't be used by anything outside of that function, loop, method, or condition.
 
-Let's create the `bullet` variable inside the if condition that will become the bullet object holding the (x, y) position data.
+When we created the ship sprite, we set it to spawn in the exact middle of the canvas (height/2, width/2).  We're going to create the bullet at the same position as wherever the ship happens to be, `(ship.position.x, ship.position.y)`
+
 ```javascript
+if(keyWentDown("K"))
+  {
+  var bullet = createSprite(ship.position.x, ship.position.y);
+...
+  }
+```
 
+We'll bind the sprite to the ship image next:
+```javascript
+if(keyWentDown("K"))
+  {
+  var bullet = createSprite(ship.position.x, ship.position.y);
+  bullet.addImage(bulletImage);
+...
+  }
+```
 
+The next thing you might be thinking is... how fast do I want my bullet to go and in what direction?
 
+I'm glad you asked.  Certainly, the bullet has to go faster than the ship.  You can fiddle with a number that looks best for you, but let's start out with whatever the ship's speed is plus 10.  We express this using the `getSpeed()` property of the ship object and then add 10 to it.
+
+Next, is the direction of the bullet to fire.  I'm going to go out on a limb and assume that you want the bullet to go in the same direction as the ship.  You can play around with this later and perhaps add another gun that fires backwards, or two guns up front and on the sides.  For now, though, we'll get the value of the `rotation` property from the ship object.
+
+With both of these parameters, we'll be able to set the `setSpeed()` property of the bullet object.
+
+```javascript
+if(keyWentDown("K"))
+  {
+  var bullet = createSprite(ship.position.x, ship.position.y);
+  bullet.addImage(bulletImage);
+  bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
+
+...
+  }
+```
+
+If you shoot now, you will see that your bullets last forever.  This is probably not what you want, though it is pretty cool.  Let's give the bullets a limited lifetime.  We use a property to set the life of a bullet.  we'll set our bullet to be 30.  30 what? 30 life.  Like this:
+```javascript
+if(keyWentDown("K"))
+  {
+  var bullet = createSprite(ship.position.x, ship.position.y);
+  bullet.addImage(bulletImage);
+  bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
+  bullet.life = 30;
+
+...
+  }
+```
+
+Now, we have a ship hat fires its gun.  we will be using these bullets to act on asteroids and perhaps in some future game, we can affect other sprites, like other ships. To allow each bullet to act in the same way, we will add them to the bullets group we cerated earlier.  This will also be in our if statement for "K".  Your complete if condition for when "K" is pressed should now look like the following:
+```javascript
+if(keyWentDown("K"))
+  {
+  var bullet = createSprite(ship.position.x, ship.position.y);
+  bullet.addImage(bulletImage);
+  bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
+  bullet.life = 30;
+  bullets.add(bullet);
+  }
+```
+
+Now, we're ready to shoot something!
 
 ### The Asteroids
 
