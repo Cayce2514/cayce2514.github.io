@@ -1,7 +1,7 @@
 var asteroids;
 var bullets;
 var ship;
-var shipImage;bulletImage;
+var shipImage, bulletImage;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -71,6 +71,8 @@ function draw() {
     if(s.position.y>height) s.position.y = 0;
   }
 
+  asteroids.overlap(bullets, asteroidHit);
+
     // rotate left
   if(keyDown("A"))
     ship.rotation -= 4;
@@ -104,9 +106,28 @@ function createAsteroid(type, x, y) {
   var a = createSprite(x, y);
   var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
   a.addImage(img);
+
+  a.type = type;
   a.setSpeed(2.5-(type/2), random(360));
   a.rotationSpeed = .5;
 
+  if(type == 2)
+    a.scale = .6; // 60% of size
+  if(type == 1)
+    a.scale = .3; // 30% of size
+
   asteroids.add(a);
   return a;
+}
+
+function asteroidHit(asteroid, bullet) {
+  var newType = asteroid.type-1;
+
+  if(newType>0) {
+    createAsteroid(newType, asteroid.position.x, asteroid.position.y);
+    createAsteroid(newType, asteroid.position.x, asteroid.position.y);
+    }
+
+  bullet.remove();
+  asteroid.remove();
 }

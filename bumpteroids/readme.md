@@ -620,12 +620,16 @@ lastly, we use the `addImage()` method to assign the actual image as a property 
 
 We'll now make our asteroids move so that you can see them on the canvas.  They will need a speed and a direction. For fun, we're also going to ask them asteroids to rotate. We'll use the `setSpeed()` method and assign the `rotationSpeed` parameter combined with a random angle between 0 and 360.
 
+To add a little interest, we'll use the `type` or size of the asteroid to affect it's speed.  So, for now, take the value stored in `type` and assign it to the type property of the current asteroid `a.type.`
+
 Your function should now look like this:
 ```javascript
 function createAsteroid(type, x, y) {
   var a = createSprite(x, y);
   var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
   a.addImage(img);
+
+  a.type = type;
   a.setSpeed(2.5-(type/2), random(360));
   a.rotationSpeed = .5;
 }
@@ -638,6 +642,8 @@ function createAsteroid(type, x, y) {
   var a = createSprite(x, y);
   var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
   a.addImage(img);
+
+  a.type = type;
   a.setSpeed(2.5-(type/2), random(360));
   a.rotationSpeed = .5;
 
@@ -646,8 +652,87 @@ function createAsteroid(type, x, y) {
 }
 ```
 
+Congratulations! We now have a spaceship that shoots and we have asteroids!  We have a couple of problems though.  First, our asteroids don't do anything to the ship and also, our ship can't blow up any asteroids.  Let's blow some asteroids up!
+
 ### Blowing Things Up
 
+When we blow things up, one sprite is interacting with another sprite.  There's an "overlap" between the two sprite objects in the plane of the canvas.  
+
+We can define this overlap using the `overlap()` property for the asteroids sprite `Group()` object and the bullets `Group()` object that then can call a function to make an explosion and remove the sprite objects from the screen.  Let's start with the removing of the asteroid sprite first.
+
+We know that we'll do more complex operations shortly, so, let's set up a new function called `asteroidHit()` at the end of the program and we'll set it up to accept asteroids and bullets as parameters:
+
+```javascript
+function asteroidHit(asteroid, bullet) {
+
+}
+```
+
+Right now, we will just remove the asteroid and bullet objects in question when there's an `overlap()` detected.  Add the `asteroidHit()` function the following lines:
+
+```javascript
+function asteroidHit(asteroid, bullet) {
+
+  bullet.remove();
+  asteroid.remove();
+}
+```
+With the function now defined, we can define the `overlap()` to call the `asteroidHit()` function.  We'll add it underneath the universe wrapping blocks that controls how the sprites behave when moving past the edge of the screen and above the `keyDown()` definitions.
+```JavaScript
+if(s.position.y>height+MARGIN) s.position.y = -MARGIN;
+}
+// add below the universe wrap condition
+
+asteroids.overlap(bullets, asteroidHit);
+
+// add above your existing key commands
+if(keyDown("A"))
+```
+We've applied this method to the asteroids group object and included as the parameters the `bullets`group and the `asteroidHit()` function call.  Save and reload your live preview and you will see that you can now shoot your asteroids.  We need explosions next and we'll make it so that we can split our asteroids in two and make them progressively smaller pieces until they fully disappear....and explosions, of course, should be part of each hit.
+
+Within the `asteroidHit()` function, we will decrement the existing type (remember, we had three types, large, medium and small, or 3, 2, and 1).  and spawn two smaller asteroids of the next size down.  First, the decrement.  Add it just under the function declaration and above the `remove()` lines:
+```javascript
+function asteroidHit(asteroid, bullet) {
+  var newType = asteroid.type-1;
+
+// your existing object.remove() statements
+  bullet.remove();
+  asteroid.remove();
+}
+```
+We now take the astroid we shot from 3, or large, to 2, or medium.  Now, let's create two to replace the one, but only if it's not smaller than size 1:
+```javascript
+function asteroidHit(asteroid, bullet) {
+  var newType = asteroid.type-1;
+
+  if(newType>0) {
+    createAsteroid(newType, asteroid.position.x, asteroid.position.y);
+    createAsteroid(newType, asteroid.position.x, asteroid.position.y);
+    }
+
+// your existing object.remove() statements
+  bullet.remove();
+  asteroid.remove();
+}
+```
+When we try to create the smaller asteroids with the `newType` value, our program doesn't know what to do just yet.  Let's tell it.  since we're calling the `createAsteroid` function, we'll define it there.  
+
+When the type is 3, it's size, or scale is 100% or 1.  When we set the type to 2, we'll scale it a bit smaller and if type is 1, we'll scale the asteroid a bit smaller still.  We'll use a comparison operation added just underneath the rotationSpeed setting and above our adding the asteroid to the group.
+```javascript
+...
+///your existing rotationSpeed
+a.rotationSpeed = .5;
+
+if(type == 2)
+  a.scale = .6; // 60% of size
+if(type == 1)
+  a.scale = .3; // 30% of size
+
+// your existing adding of the asteroid to the Group()
+asteroids.add(a);
+...
+// end of the createAsteroid function
+}
 
 
 ## Part IV: Hacking
