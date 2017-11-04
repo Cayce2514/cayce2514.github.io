@@ -534,6 +534,8 @@ Now, we're ready to shoot something!
 
 ### The Asteroids
 
+Just as we set up the ship and the bullets, we'll start with establishing variables to hold our asteroids.
+
 ### Blowing Things Up
 
 
