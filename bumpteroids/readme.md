@@ -610,6 +610,41 @@ function createAsteroid(type, x, y) {
   a.addImage(img);
 }
 ```
+You will notice that we're calling `loadImage()` in an interesting way.
+
+Within the path of the image file, we're calling a `random()` method to pick a number between 0 and 3. The `random()` method in the P5.js library actually works similarly to the native JavaScript `Math.random()` method, but in this case, it picks a _floating point number_ between 0 and up to, but *_not_* including 3.
+
+Since it is a floating point number, the number returned from `random()` has a decimal portion.  We round down to the nearest whole integer using the `floor()` method.  Combined, `floor(random(0,3))` it will return an integer between 0 and 3, but not 3.  This matches up with the actual names of our asteroid images.  Each time through this section of code, it will use a different asteroid image, chosen randomly.
+
+lastly, we use the `addImage()` method to assign the actual image as a property for the asteroid object "a".
+
+We'll now make our asteroids move so that you can see them on the canvas.  They will need a speed and a direction. For fun, we're also going to ask them asteroids to rotate. We'll use the `setSpeed()` method and assign the `rotationSpeed` parameter combined with a random angle between 0 and 360.
+
+Your function should now look like this:
+```javascript
+function createAsteroid(type, x, y) {
+  var a = createSprite(x, y);
+  var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
+  a.addImage(img);
+  a.setSpeed(2.5-(type/2), random(360));
+  a.rotationSpeed = .5;
+}
+```
+We'll lastly add the generated asteroids to our group and return the asteroid, with all of it's properties to the `setup()` function so that they can be drawn on the screen.
+
+Your function should now look like this:
+```javascript
+function createAsteroid(type, x, y) {
+  var a = createSprite(x, y);
+  var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
+  a.addImage(img);
+  a.setSpeed(2.5-(type/2), random(360));
+  a.rotationSpeed = .5;
+
+  asteroids.add(a);
+  return a;
+}
+```
 
 ### Blowing Things Up
 
