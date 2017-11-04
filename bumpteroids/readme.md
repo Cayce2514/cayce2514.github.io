@@ -535,6 +535,7 @@ Now, we're ready to shoot something!
 ### The Asteroids
 
 Asteroids are big rocks floating in space.  They take various sizes and shapes.  You can use any image you like, but in this tutorial, we'll use the following 3 images:
+
 ![Asteroid 0](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid0.png)
 ![Asteroid 1](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid1.png)
 ![Asteroid 2](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid2.png)
