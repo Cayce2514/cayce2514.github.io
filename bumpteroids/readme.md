@@ -560,7 +560,34 @@ bullets = new Group();
 // below is the closing brace for your setup() function. Don't put another one.
 }
 ```
-For starters, we're going to create 8 asteroids.  These will be full-size asteroids, or type 3.  We'll use a for loop to generate them and we'll pick a random image of the three we have to represent the asteroid that's being created.
+For starters, we're going to create 8 asteroids.  These will be full-size asteroids, or type 3.  We'll use a for loop to generate them and we'll pick a random image of the three we have to represent the asteroid that's being created.  We'll put this at the end of our `setup()` function, just after the `Group()` for the bullets, but before the brace that closes the `setup()` function:
+```javascript
+...
+// your existing bullets group
+bullets = new Group();
+
+// the basic for loop that will iterate through 8 times starting with 0
+for(var i = 0; i<8; i++) {
+
+  }
+// brace that closes the setup() function
+}
+```
+We will want to pick a random location to spawn our asteroid.  We'll use the center of the canvas as a reference point and set the (x,y) location of the asteroid somewhere along the line of the randomly chosen angle outside of the canvas to to spawn at.  We will then use the type (3, meaning large), and the (x,y) position as parameters to pass to a new asteroid creation function `createAsteroid()`:
+```javascript
+// the for loop that you've already added
+for(var i = 0; i<8; i++) {
+  // pick an angle between 0 and 360
+  var ang = random(360);
+  // calculate a x position somewhere along the line at the chosen angle, outside the canvas area.
+  var px = width/2 + 1000 * cos(radians(ang));
+  //calculate a y position somewhere along the line at the chosen angle, outside the canvas area.
+  var py = height/2+ 1000 * sin(radians(ang));
+  createAsteroid(3, px, py);
+  }
+```
+
+#### The `createAsteroids()` function
 
 
 

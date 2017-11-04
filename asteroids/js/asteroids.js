@@ -26,6 +26,13 @@ function setup() {
 
 asteroids = new Group();
 bullets = new Group();
+
+for(var i = 0; i<8; i++) {
+  var ang = random(360);
+  var px = width/2 + 1000 * cos(radians(ang));
+  var py = height/2+ 1000 * sin(radians(ang));
+  createAsteroid(3, px, py);
+  }
 }
 
 function draw() {
