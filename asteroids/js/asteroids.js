@@ -1,3 +1,4 @@
+var asteroids;
 var bullets;
 var ship;
 var shipImage;bulletImage;
@@ -13,23 +14,23 @@ function setup() {
   ship.maxSpeed = 6;
   // set friction to allow our ship to eventually slow to a stop
   ship.friction = .98;
-  
+
   ship.addImage("normal", shipImage);
-  ship.addAnimation("thrust", 
-    "images/asteroids_ship0002.png", 
-    "images/asteroids_ship0003.png", 
-    "images/asteroids_ship0004.png", 
-    "images/asteroids_ship0005.png", 
-    "images/asteroids_ship0006.png", 
+  ship.addAnimation("thrust",
+    "images/asteroids_ship0002.png",
+    "images/asteroids_ship0003.png",
+    "images/asteroids_ship0004.png",
+    "images/asteroids_ship0005.png",
+    "images/asteroids_ship0006.png",
     "images/asteroids_ship0007.png");
 
-
+asteroids = new Group();
 bullets = new Group();
 }
 
 function draw() {
   background(254,248,248);
-  
+
   // set the text fill
   fill(254,190,190);
 
@@ -38,7 +39,7 @@ function draw() {
 
   // set the text size
   textSize(12);
-  
+
   text("W + A + D keys to move.", width-30, 30);
 
   // set up a for loop based on the length of any sprite
@@ -70,7 +71,7 @@ function draw() {
   // rotate right
   if(keyDown("D"))
     ship.rotation += 4;
-    
+
   if(keyDown("W"))
     {
     ship.addSpeed(.2, ship.rotation);
@@ -78,7 +79,7 @@ function draw() {
     }
   else
     ship.changeAnimation("normal");
-  
+
   if(keyWentDown("k"))
   {
     var bullet = createSprite(ship.position.x, ship.position.y);
@@ -87,8 +88,7 @@ function draw() {
     bullet.life = 30;
     bullets.add(bullet);
   }
-    
+
   drawSprites();
 
 }
-

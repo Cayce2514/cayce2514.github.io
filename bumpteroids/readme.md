@@ -534,7 +534,36 @@ Now, we're ready to shoot something!
 
 ### The Asteroids
 
-Just as we set up the ship and the bullets, we'll start with establishing variables to hold our asteroids.
+Asteroids are big rocks floating in space.  They take various sizes and shapes.  You can use any image you like, but in this tutorial, we'll use the following 3 images:
+![Asteroid 0](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid0.png)
+![Asteroid 1](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid1.png)
+![Asteroid 2](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid2.png)
+
+When we shoot the asteroid, it isn't going to blow it up completely.  It'll break into two smaller pieces, then two more before you can fully destroy the smallest asteroid. We'll use the same images for the big and small sprites.  We'll just scale the to suit our needs.  We'll specify them as 3 types: large, medium and small.
+
+First, let's get the astroids spawning in the game.
+
+Like our ship and our bullet, we have to create a variable at the top to hold our asteroids.  We'll arrange this variable alphabetically with bullets that you already have in your code:
+```javascript
+// your new asteroids variable
+var asteroids;
+//your existing bullets variable
+var bullets;
+```
+
+As with the bullets, the asteroids will be a `Group()` so that we can act on all of them together.  Define this group above where you already have your bullets group, _inside_ your `setup()` function:
+```javascript
+// your new asteroids group
+asteroids = new Group();
+// your existing bullets group
+bullets = new Group();
+// below is the closing brace for your setup() function. Don't put another one.
+}
+```
+For starters, we're going to create 8 asteroids.  These will be full-size asteroids, or type 3.  We'll use a for loop to generate them and we'll pick a random image of the three we have to represent the asteroid that's being created.
+
+
+
 
 ### Blowing Things Up
 
