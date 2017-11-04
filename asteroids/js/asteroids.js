@@ -99,3 +99,9 @@ function draw() {
   drawSprites();
 
 }
+
+function createAsteroid(type, x, y) {
+  var a = createSprite(x, y);
+  var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
+  a.addImage(img);
+}

@@ -540,7 +540,7 @@ Asteroids are big rocks floating in space.  They take various sizes and shapes. 
 ![Asteroid 1](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid1.png)
 ![Asteroid 2](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid2.png)
 
-When we shoot the asteroid, it isn't going to blow it up completely.  It'll break into two smaller pieces, then two more before you can fully destroy the smallest asteroid. We'll use the same images for the big and small sprites.  We'll just scale the to suit our needs.  We'll specify them as 3 types: large, medium and small.
+When we shoot the asteroid, it isn't going to blow up completely.  It'll break into two smaller pieces, then two more before you can fully destroy the smallest asteroid. We'll use the same images for the big and small sprites.  We'll just scale the to suit our needs.  We'll specify them as 3 types: large, medium and small.
 
 First, let's get the astroids spawning in the game.
 
@@ -590,8 +590,26 @@ for(var i = 0; i<8; i++) {
 
 #### The `createAsteroids()` function
 
+Create the new function under the closing brace of the `draw()` function:
+```javascript
+function createAsteroid() {
 
+}
+```
+As we discussed above, we'll be passing this function 3 parameters.  The type, the x position and the y position.  We reflect these parameters in the function declaration:
+```javascript
+function createAsteroid(type, x, y) {
 
+}
+```
+As we did with the bullets, we'll create a local variable to contain the sprite.  We'll create another local variable to hold the image for the asteroid and finally we'll bind the sprite and the image for the sprite together with the `addImage()` method.
+```javascript
+function createAsteroid(type, x, y) {
+  var a = createSprite(x, y);
+  var img  = loadImage("images/asteroid"+floor(random(0,3))+".png");
+  a.addImage(img);
+}
+```
 
 ### Blowing Things Up
 
