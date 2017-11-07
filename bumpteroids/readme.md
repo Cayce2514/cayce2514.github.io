@@ -715,9 +715,9 @@ function asteroidHit(asteroid, bullet) {
   asteroid.remove();
 }
 ```
-When we try to create the smaller asteroids with the `newType` value, our program doesn't know what to do just yet.  Let's tell it.  since we're calling the `createAsteroid` function, we'll define it there.  
+When we try to create the smaller asteroids with the `newType` value, our program doesn't know what to do just yet.  Let's tell it.  Since we're calling the `createAsteroid` function, we'll define it there.  
 
-When the type is 3, it's size, or scale is 100% or 1.  When we set the type to 2, we'll scale it a bit smaller and if type is 1, we'll scale the asteroid a bit smaller still.  We'll use a comparison operation added just underneath the rotationSpeed setting and above our adding the asteroid to the group.
+When the type is 3, it's size, or scale is 100%, or 1.  When we set the type to 2, we'll scale it a bit smaller, say, 60%. If type is 1, we'll scale the asteroid a bit smaller still, say, 30%. Finally, we'll let it go to zero which will allow the final `remove()` of the littlest asteroid. We'll use a comparison operation added just underneath the rotationSpeed setting and above our adding the asteroid to the group.
 ```javascript
 ...
 ///your existing rotationSpeed
@@ -733,7 +733,77 @@ asteroids.add(a);
 ...
 // end of the createAsteroid function
 }
+```
 
+There's now only one issue with the shooting of the asteroid.  There's no explosion!  Since this game uses quite simple graphics, we'll use another small image to represent an asteroid particle.  You can download it here:
+
+![Asteroid 0](https://raw.githubusercontent.com/Cayce2514/cayce2514.github.io/master/bumpteroids/images/asteroid_particle.png)
+
+Each time that we shoot and hit an asteroid, there will be a ring of, say, 10 particles expanding out from the position of the bullet we shot the asteroid with to make something like an explosion. We'll have the particles go in random directions and at a somewhat random speed.
+
+To do this, we'll set up a for loop, similar to how we spawned our asteroids.  Since we're doing it as part of the asteroid hit, we'll put this code in the `asteroidsHit()` function, just above the `remove()` methods:
+```javascript
+for(var i=0; i<10; i++) {
+
+  }
+
+// your existing bullet remove and asteroid remove:
+bullet.remove();
+asteroid.remove();
+
+//end brace of your asteroidHit() function
+}
+```
+We'll need to add a variable for the particle image, which we'll keep at the vary top of the program.  We can combine the variable declaration with other Image variable declarations:
+
+```javascript
+// notice the list of variables separated by commas?
+var asteroids;
+var bullets;
+var ship;
+var shipImage, bulletImage, particleImage;
+```
+The variable that we'll use for the sprite can be a local variable.  We declare it and at the same time, assign the value from the `createSprite()` method which includes the same position as the bullet that shot the asteroid.  We put this inside the for loop.
+```javascript
+for(var i=0; i<10; i++) {
+  var p = createSprite(bullet.position.x, bullet.position.y);
+
+  }
+```
+We'll need to load the image and assign the image to the global variable particleImage.  We can put it up with the other `loadImage()` calls that we used for the ship and the bullet near the beginning of the `setup()` function:
+
+```javascript
+// your existing setup() function
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+//put below your shipImage assignment
+  bulletImage = loadImage("images/asteroids_bullet.png");
+  shipImage = loadImage("images/asteroids_ship0001.png");
+  particleImage = loadImage("images/asteroids_particle.png");
+```
+
+Next, we need to bind the image to the sprite.  We do that by using the `addImage()` method in the for loop:
+
+```javascript
+for(var i=0; i<10; i++) {
+  var p = createSprite(bullet.position.x, bullet.position.y);
+  p.addImage(particleImage);
+
+  }
+```
+Finally, we'll give the particles some behavior, to go in a direction at some speed, and last for some distance using the life property, and slow down a bit after the hit using the friction property.
+
+Your for loop should now look like this:
+```javascript
+for(var i=0; i<10; i++) {
+  var p = createSprite(bullet.position.x, bullet.position.y);
+  p.addImage(particleImage);
+  p.setSpeed(random(3,5), random(360));
+  p.friction = 0.95;
+  p.life = 15;
+  }
+```
 
 ## Part IV: Hacking
 Perhaps you can think of a few ways to improve on this classic game?

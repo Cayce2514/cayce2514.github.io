@@ -1,13 +1,15 @@
 var asteroids;
 var bullets;
 var ship;
-var shipImage, bulletImage;
+var shipImage, bulletImage, particleImage;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   bulletImage = loadImage("images/asteroids_bullet.png");
   shipImage = loadImage("images/asteroids_ship0001.png");
+  particleImage = loadImage("images/asteroids_particle.png");
+
 
   ship = createSprite(width/2, height/2);
   // set our maxSpeed to 6. 6 what? 6 speed.
@@ -126,6 +128,14 @@ function asteroidHit(asteroid, bullet) {
   if(newType>0) {
     createAsteroid(newType, asteroid.position.x, asteroid.position.y);
     createAsteroid(newType, asteroid.position.x, asteroid.position.y);
+    }
+
+  for(var i=0; i<10; i++) {
+    var p = createSprite(bullet.position.x, bullet.position.y);
+    p.addImage(particleImage);
+    p.setSpeed(random(3,5), random(360));
+    p.friction = 0.95;
+    p.life = 15;
     }
 
   bullet.remove();
