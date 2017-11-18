@@ -13,9 +13,14 @@ This workshop should take around ?? minutes.
 **Table of contents:**
 
 - [Part I: Setup](#part-i-setup)
-  - [Set up Folder and Files](#set-up-folder-and-files)
 - [Part II: The HTML file](#part-ii-the-html-file)
 - [Part III: The JavaScript File](#part-iii-the-javascript-file)
+  - [Setup the file and canvas](#setup-the-file-and-canvas)
+  - [Your Space Ship](#your-space-ship)
+  - [Flying](#flying)
+  - [Shooting](#shooting)
+  - [The Asteroids](#the-asteroids)
+  - [Blowing Things Up](#blowing-things-up)
 - [Part IV: Hacking](#part-iv-hacking)
 - [Part V: Sharing](#part-v-sharing)
 
