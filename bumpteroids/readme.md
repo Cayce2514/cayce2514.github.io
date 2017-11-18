@@ -10,7 +10,7 @@ Here's the [live demo](https://cayce2514.github.io/bumpteroids/) and [final code
 
 This workshop should take around ?? minutes.
 
-**Table of contents:**
+# Table of contents:
 
 - [Part I: Setup](#part-i-setup)
 - [Part II: The HTML file](#part-ii-the-html-file)
