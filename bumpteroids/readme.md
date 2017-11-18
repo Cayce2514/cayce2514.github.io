@@ -13,6 +13,7 @@ This workshop should take around ?? minutes.
 **Table of contents:**
 
 - [Part I: Setup](#part-i-setup)
+  - [Set up Folder and Files](#set-up-folder-and-files)
 - [Part II: The HTML file](#part-ii-the-html-file)
 - [Part III: The JavaScript File](#part-iii-the-javascript-file)
 - [Part IV: Hacking](#part-iv-hacking)
