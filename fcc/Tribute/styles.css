@@ -1,31 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #8bb5a9;
 }
 
 div {
   background-color: #FFFFFF;
-  margin: 5px 15px;
-  border: 0px solid black;
-  padding: 5px;
+  margin: inherit;
   font-family: "Raleway", sans-serif;
 }
 
-.btn {
-  background-color: #8bb5a9;
-  color: #000000;
-  margin: 1px;
-  padding: 1px;
-}
-
-.btn:hover, .btn:focus {
-  background: #397C69;
-  color: #FFFFFF;
-}
-
-.btn:active {
-  background: #BEC9D6;
-  color: #000000;
-}
 
 img {
   max-width: 100%;
