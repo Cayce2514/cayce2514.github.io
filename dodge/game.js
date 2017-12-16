@@ -12,7 +12,6 @@ var isGameOver;
 function preload() {
   playerImage = loadImage("img/alienYellow_dying_2.png");
   enemyImage = loadImage("https://surrogate.hackedu.us/i.imgur.com/OdL0XPt.png");
-  image(enemyImage, 0, 0, 50, 50);
   
   backgroundImage = loadImage("https://surrogate.hackedu.us/i.imgur.com/aKQOg3G.png");
 }
@@ -21,7 +20,9 @@ function setup() {
     isGameOver = false;
     createCanvas(256, 256);
     
-    player = createSprite(width/2, (playerImage.height/2), 0, 0);
+    playerImage.height = playerImage.height/2;
+    playerImage.width = playerImage.width/2;
+    player = createSprite(width/2, height-(playerImage), 0, 0);
     player.addImage(playerImage);
 
     enemy = createSprite(width/2, 0, 0, 0);
