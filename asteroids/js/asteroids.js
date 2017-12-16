@@ -78,6 +78,9 @@ function draw() {
     if(keyWentDown("k"))
     {
     var bullet = createSprite(ship.position.x, ship.position.y);
+    bullet.addImage(bulletImage);
+    bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
+    bullet.life = 30;
 
     }
     
