@@ -1,14 +1,24 @@
+<<<<<<< HEAD
 var asteroids;
 var bullets;
 var ship;
 var shipImage, bulletImage, particleImage;
+=======
+var ship;
+var shipImage;
+var bullets;
+var bulletImage;
+>>>>>>> 1402cb58b9ad169717b203a04afa80ddc548ca6b
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  bulletImage = loadImage("images/asteroids_bullet.png");
   shipImage = loadImage("images/asteroids_ship0001.png");
+<<<<<<< HEAD
   particleImage = loadImage("images/asteroids_particle.png");
+=======
+  bulletImage = loadImage("images/asteroids_bullet.png");
+>>>>>>> 1402cb58b9ad169717b203a04afa80ddc548ca6b
 
 
   ship = createSprite(width/2, height/2);
@@ -18,6 +28,7 @@ function setup() {
   ship.friction = .98;
 
   ship.addImage("normal", shipImage);
+<<<<<<< HEAD
   ship.addAnimation("thrust",
     "images/asteroids_ship0002.png",
     "images/asteroids_ship0003.png",
@@ -35,6 +46,12 @@ for(var i = 0; i<8; i++) {
   var py = height/2+ 1000 * sin(radians(ang));
   createAsteroid(3, px, py);
   }
+=======
+  ship.addAnimation("thrust", "images/asteroids_ship0002.png", "images/asteroids_ship0003.png", "images/asteroids_ship0004.png", "images/asteroids_ship0005.png", "images/asteroids_ship0006.png", "images/asteroids_ship0007.png");
+
+bullets = new Group();
+  
+>>>>>>> 1402cb58b9ad169717b203a04afa80ddc548ca6b
 }
 
 function draw() {
@@ -90,16 +107,28 @@ function draw() {
     }
   else
     ship.changeAnimation("normal");
+<<<<<<< HEAD
 
   if(keyWentDown("k"))
   {
+=======
+  
+    if(keyWentDown("k"))
+    {
+>>>>>>> 1402cb58b9ad169717b203a04afa80ddc548ca6b
     var bullet = createSprite(ship.position.x, ship.position.y);
     bullet.addImage(bulletImage);
     bullet.setSpeed(10+ship.getSpeed(), ship.rotation);
     bullet.life = 30;
+<<<<<<< HEAD
     bullets.add(bullet);
   }
 
+=======
+
+    }
+    
+>>>>>>> 1402cb58b9ad169717b203a04afa80ddc548ca6b
   drawSprites();
 
 }
