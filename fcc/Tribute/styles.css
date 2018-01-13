@@ -1,19 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #8bb5a9;
-
 }
 
 div {
   background-color: #FFFFFF;
-  margin: 25px;
-  border: 0px solid black;
-  padding: 25px;
+  margin: inherit;
   font-family: "Raleway", sans-serif;
-
 }
 
+
 img {
-  display: block;
-  width: 300px;
-  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  margin: 5px auto 5px;
+  border: 3px solid #8bb5a9;
 }
