@@ -58,3 +58,7 @@ function loadNews() {
   news.text("fetching news..."); 
 }    
 
+
+loadDate();
+loadWeather();
+loadNews();
