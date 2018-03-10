@@ -1,9 +1,9 @@
 function loadDate() {
-  var currentDate = new Date(); 
+  var currentDate = new Date();
   var dateString = currentDate.toString()
-                     .split(" ") 
+                     .split(" ")
                      .splice(0, 4) // making the string contain only the first four words
-                     .join(" "); 
+                     .join(" ");
 
   $("#date").text(dateString);
 }
@@ -19,7 +19,7 @@ function loadWeather() {
 
     // API request:
     $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-      weather.text("Based on your current location, it is " + data.currently.temperature + "° F right now");
+      weather.text("Based on your current location, the current weather conditions are:\r\n" + "Temperature: " + data.currently.temperature + "° F\r\nHumidity: " + data.currently.humidity + "in. Hg.");
     });
   }
 
@@ -33,28 +33,53 @@ function loadWeather() {
 
   // the text that will be displayed while the function is making the request
   weather.text("fetching weather...");
-
 }
 
-function loadNews() {
-  var news = $("#news");
+function loadNews1() {
+  var news = $("#news1");
   var url = "https://newsapi.org/v1/articles?source=google-news&sortBy=top&apiKey="; // News API url
   var apiKey = "2a8e891933ad4f5aba875888a4f2ed1f"; // API key from News API
 
   $.getJSON(url + apiKey, function(data) {
 
-  // map() method to call article urls and titles
+    // map() method to call article urls and titles
 
-  var titles = data.articles.map(function(articles) {
-  return "<a href='" + articles.url + "'>" + articles.title + "</a>";
-  });
+    var titles = data.articles.map(function(articles) {
+      return "<a href='" + articles.url + "'>" + articles.title + "</a>";
+    });
 
-  // joining the titles with two line breaks
+     // joining the titles with two line breaks
 
-  news.html(titles.join("<br><br>"));
+    news.html(titles.join("<br><br>"));
   });
 
   // the text that will be displayed while the function is making the request
-  news.text("fetching news..."); 
-}    
+  news.text("fetching news...");
+}
 
+function loadNews2() {
+  var news = $("#news2");
+  var url = "https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey="; // News API url
+  var apiKey = "2a8e891933ad4f5aba875888a4f2ed1f"; // API key from News API
+
+  $.getJSON(url + apiKey, function(data) {
+
+    // map() method to call article urls and titles
+
+    var titles = data.articles.map(function(articles) {
+      return "<a href='" + articles.url + "'>" + articles.title + "</a>";
+    });
+
+     // joining the titles with two line breaks
+
+    news.html(titles.join("<br><br>"));
+  });
+
+  // the text that will be displayed while the function is making the request
+  news.text("fetching news...");
+}
+
+loadDate();
+loadWeather();
+loadNews1();
+loadNews2();
