@@ -78,11 +78,13 @@ position:absolute; border-radius:100%; overflow:hidden;
 
 body{padding:0;margin:0;}
 
-.container{ 
+.container{
+ 
 overflow:hidden; position:relative;
 width:calc(var(--base) * 14); height:calc(var(--base) * 14);
 top:calc(50% - (var(--base) * 7));
 margin-left:auto; margin-right:auto;}
+ *
 
 
 #spinner_s2{top:  calc(var(--base) * 0);  left:  calc(var(--base) * 0);} 
