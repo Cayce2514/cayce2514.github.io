@@ -44,7 +44,7 @@ main, section, footer {
 
 
 img {
-  max-width: 100%;
+  max-width: 25s%;
   display: block;
   height: auto;
   margin: 5px auto 5px auto;
