@@ -30,6 +30,7 @@ li a {
   text-align: left;
   padding: 10px;
   text-decoration: none;
+  list-style-type: none;
 }
 
 li a:hover {
