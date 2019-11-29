@@ -24,7 +24,7 @@ header, .hTitle, .hSubTile {
   float: left;
 }
 
-li a {
+li, li a {
   display: block;
   color: #000;
   text-align: left;
