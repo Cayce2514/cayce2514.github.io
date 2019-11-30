@@ -24,7 +24,7 @@ header, .hTitle, .hSubTile {
   float: left;
 }
 
-li, li a {
+.lecture-li {
   display: block;
   color: #000;
   text-align: left;
@@ -33,9 +33,16 @@ li, li a {
   list-style-type: none;
 }
 
+li a {
+  display: block;
+  color: #FFF;
+  text-align: left;
+  padding: 10px;
+  text-decoration: none;
+}
+
 li a:hover {
   background-color: #333;
-  color: #FFF;
 }
 
 main, section, footer {
