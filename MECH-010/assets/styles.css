@@ -26,9 +26,9 @@ header, .hTitle, .hSubTile {
 
 .list {
   display: block;
-  color: #FFF;
+  color: #000;
   text-align: left;
-  padding: 0px;
+  padding: 10px;
   text-decoration: none;
   list-style-type: none;
 }
