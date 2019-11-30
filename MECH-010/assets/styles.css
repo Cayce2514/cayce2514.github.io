@@ -8,7 +8,8 @@ header, .hTitle, .hSubTile {
   background-color: #FFFFFF;
   margin: 0px 0px 0px 0px;
   padding: .5em;
-  text-align: center;
+  float: right;
+  # text-align: center;
 }
 
 .nav-ul {
@@ -59,6 +60,7 @@ main, section, footer {
 img {
   max-width: 25%;
   display: block;
+  float: right;
   height: auto;
   margin: 5px auto 5px auto;
   border: 5px solid #8bb5a9;
