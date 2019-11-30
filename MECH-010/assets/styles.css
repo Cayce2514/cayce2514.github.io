@@ -13,7 +13,7 @@ header, .hTitle, .hSubTile {
 
 p {
   padding: 0;
-  margin-left: 10px;
+  margin: 0px 0px 0px 10px;
   text-align: left;
 }
 
