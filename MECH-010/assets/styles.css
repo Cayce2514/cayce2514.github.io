@@ -11,6 +11,12 @@ header, .hTitle, .hSubTile {
   text-align: left;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
 .nav-ul {
   background-color: #8bb5a9;
   list-style-type: none;
