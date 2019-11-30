@@ -65,8 +65,8 @@ main, section, footer {
 img {
   max-width: 25%;
   max-height: 25%;
-  min-width: 10%;
-  min-height: 10%;
+  min-width: 15%;
+  min-height: 15%;
   display: block;
   float: right;
   height: auto;
