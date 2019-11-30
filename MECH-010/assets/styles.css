@@ -28,7 +28,8 @@ header, .hTitle, .hSubTile {
   display: block;
   color: #000;
   text-align: left;
-  padding: 10px;
+  margin-left: 10px;
+  padding: 0px;
   text-decoration: none;
   list-style-type: none;
 }
@@ -43,6 +44,7 @@ li a {
 
 li a:hover {
   background-color: #333;
+  color: #FF0000;
 }
 
 main, section, footer {
