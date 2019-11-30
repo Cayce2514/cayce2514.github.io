@@ -24,7 +24,7 @@ header, .hTitle, .hSubTile {
   float: left;
 }
 
-.lecture-li {
+.list {
   display: block;
   color: #000;
   text-align: left;
