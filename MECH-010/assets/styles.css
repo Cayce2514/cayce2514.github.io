@@ -2,7 +2,6 @@ body {
   background-color: #8bb5a9;
   margin: 10px;
   font-family: "Raleway", sans-serif;
-
 }
 
 header, .hTitle, .hSubTile {
@@ -47,12 +46,15 @@ li a:hover {
   color: #FFF;
 }
 
+a:hover {
+  color: #A52A2A;
+}
+
 main, section, footer {
   background-color: #FFFFFF;
   margin: 0px;
   padding: 5px;
 }
-
 
 img {
   max-width: 25%;
