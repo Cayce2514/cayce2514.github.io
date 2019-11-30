@@ -7,7 +7,7 @@ body {
 header, .hTitle, .hSubTile {
   background-color: #FFFFFF;
   margin: 0px 0px 0px 0px;
-  padding: .5em;
+  padding-top: .5em;
   text-align: left;
 }
 
