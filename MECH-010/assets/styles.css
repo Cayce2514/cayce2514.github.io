@@ -44,6 +44,16 @@ p {
   list-style-type: none;
 }
 
+.l2-list {
+  display: block;
+  color: #000;
+  text-align: left;
+  margin-left: 10px;
+  padding: 0px;
+  text-decoration: none;
+  list-style-type: circle;
+}
+
 li a {
   display: block;
   color: #FFF;
