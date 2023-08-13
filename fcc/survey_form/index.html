@@ -1,0 +1,127 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<!--- Main Section, User Story #1 --->
+<main id="main">
+
+  <head>
+    <title>Feedback Survey Form</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!--- Header section --->
+    <header id="header">
+      <!--- id="title", User Story #1 --->
+      <h1 id="title" class="hTitle">Feedback Survey</h1>
+      <h2 class="hSubTitle">How did we do?</h2>
+      <!--- id="description", User Story #2 --->
+      <p id="description">Please help us improve by completing the following feedback form.</p>
+      
+    </header>
+    
+      <section id="details">
+        <!-- id="survey-form", User Story #3 --->
+        <form id="survey-form" method="GET" action="https://crossorigin.me/https://freecodecamp.com">
+        <div class="labels">
+          <!--- id="name-label", User Story #10a --->
+          <label id="name-label" for="name">* Name: </label>
+        </div>
+        
+        <div class="inputs">
+          <!--- id="name", User Story #4b --->
+          <!--- placeholder="[text], User story #11 --->
+          <input autofocus type="text" name="name" id="name" class="input-field" placeholder="Enter your name" required>
+        </div>
+        <br>
+        
+        <div class="labels">
+          <!--- id="email-label", User Story #10b --->
+          <label id="email-label" for="email">* eMail: </label>
+        </div>
+      
+        <div class="inputs">
+        <!--- id="email", User Story #5b --->
+        <!--- validation for format to give an email format error, --->
+        <!--- User Story #6 --->
+        <!--- placeholder="[text], User story #11 --->
+          <input type="email" name="email" id="email" class="input-field" placeholder="Enter your valid eMail address" required>
+        </div>
+        <br>
+
+        <div class="labels">
+          <!--- id="number-label", User Story #10c --->
+          <label id="number-label" for="age">* Grade: </label>
+        </div>
+        
+        <div class="inputs">
+        <!--- id="number", User Story #7b --->
+        <!--- give error if not in range, or not number, User Story #8 --->
+        <!--- firefox gives error, chrome doesn't --->
+        <!--- validation for min (9) and max (12), User Story #9 --->
+        <!--- placeholder="[text], User story #11 --->
+          <input type="number" size="6" min="1" max="12" name="grade" id="number" class="input-field" placeholder="Grade" required>
+        </div>
+        <br>
+          
+        <div class="labels">
+        <!--- select 1 of at least 2 options from a dropdown that has a corresponding id="dropdown", User story #12 --->
+          <label for="dropdown"> What type of school is it?</label><br>
+          <select id="dropdown" name="school-level">
+            <option value="elementary-student">Public Elementary School</option>
+            <option value="middle-student">Public Middle School</option>
+            <option value="high-student">Public High School</option>
+            <option value="high-student">Private School</option>
+            <option value="high-student">Home School</option>
+          </select>
+        </div>
+        <br> 
+         <div class="labels">
+         <p>What language(s) do you speak at home?</p>
+         <!---select one of at least 2 radio button options, User Story #13 --->
+         <input type="radio" id="lang-english" name="language" value="english" checked> 
+         <label for="lang-english"> English</label><br>
+         <input type="radio" id="lang-thai" name="language" value="thai">
+         <label for="lang-thai"> Thai</label><br>
+        </div>
+
+        <div class="labels">
+        <!--- select several checkbox items which must have a value attribute, User Story #14 --->
+        <p>How do you get to school?</p>
+        <input type="checkbox" id="bywalk" name="walk" value="walk"> 
+          <label for="bywalk"> Walk</label><br>
+        <input type="checkbox" id="byskateboard" name="skateboard" value="skateboard">
+          <label for="byskateboard"> Slateboard</label><br>
+        <input type="checkbox" id="bybike" name="bike" value="bike"> 
+          <label for="bybike"> Bike</label><br>
+        <input type="checkbox" id="bycar" name="car" value="car"> 
+          <label for="bycar"> Car</label><br>
+        <input type="checkbox" id="byhelicopter" name="helicopter" value="helicopter"> 
+          <label for="byhelicopter"> Helicopter</label><br>
+        <input type="checkbox" id="byteleport" name="teleport" value="teleport"> 
+          <label for="byteleport"> Teleport</label><br><br>
+        </div>   
+        
+        <div class="labels">        
+        <br><label for="fav-subjects">What are your favorite subjects?</label>
+        </div>
+        <div class="inputs">
+        <!---User Story #15: Inside the form element, I am presented with a textarea at the end for additional comments.--->
+        <textarea name="comments" rows="10" cols="30">I really loved math!!
+        </textarea>
+        </div>
+
+
+        <!---User Story #16: Inside the form element, I am presented with a button with id="submit" to submit all my inputs.--->
+        <br/>
+        <button id="submit" type="submit">Submit</button>
+      </form>  
+    </section>
+</main>
+<footer id="footer ">
+  <p>Thanks very much for your feedback!</p>
+</footer>

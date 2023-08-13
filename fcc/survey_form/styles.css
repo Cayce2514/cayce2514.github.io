@@ -1,0 +1,53 @@
+body {
+    background-color: #8bb5a9;
+    margin: 10px;
+    font-family: "Raleway", sans-serif;
+  
+  }
+  
+  header, .hTitle, .hSubTile {
+    background-color: #FFFFFF;
+    margin: 0px 0px 0px 0px;
+    padding: .5em;
+    text-align: center;
+  } 
+  
+  .nav-ul {
+    background-color: #8bb5a9;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .nav-li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #333;
+  }
+  
+  main, section, footer {
+    background-color: #FFFFFF;
+    margin: 0px;
+    padding: 5px;
+  }
+  
+  
+  img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    margin: 5px auto 5px auto;
+    border: 5px solid #8bb5a9;
+  }
+  
