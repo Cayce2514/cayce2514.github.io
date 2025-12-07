@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>California Native Pool-Safe Plants</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --chip-bg: #111827;
+      --chip-border: #1f2933;
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 4px 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 720px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .card {
+      background: linear-gradient(135deg, #020617, #020617 40%, #0b1120);
+      border-radius: 20px;
+      border: 1px solid #1f2937;
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .search-group {
+      flex: 1 1 260px;
+      position: relative;
+    }
+
+    .search-group input {
+      width: 100%;
+      padding: 10px 12px 10px 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease,
+        background 0.16s ease;
+    }
+
+    .search-group input::placeholder {
+      color: #6b7280;
+    }
+
+    .search-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+      background: #020617;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #020617;
+      white-space: nowrap;
+    }
+
+    .pill-count {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+    }
+
+    .table-wrapper {
+      max-height: 70vh;
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top left, #020617, #020617 45%, #020617);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      min-width: 600px;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #020617;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #0f172a;
+    }
+
+    th {
+      font-weight: 600;
+      color: #9ca3af;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tbody tr:hover {
+      background: rgba(15, 23, 42, 0.65);
+    }
+
+    .name-cell {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .latin {
+      display: block;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    .purpose-cell {
+      color: var(--text-muted);
+    }
+
+    .link-cell a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-bottom: 1px dashed rgba(56, 189, 248, 0.35);
+      padding-bottom: 1px;
+    }
+
+    .link-cell a:hover {
+      border-bottom-style: solid;
+    }
+
+    .empty-row {
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        padding: 14px 12px 12px;
+      }
+
+      .table-wrapper {
+        max-height: 65vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>California Native Pool-Safe Plants</h1>
+      <p>
+        Zone 9b-appropriate native plants that work well near pools: low litter, heat
+        tolerant, and with a similar design role to common tropical or Mediterranean
+        pool species.
+      </p>
+      <div class="chips">
+        <div class="chip">
+          <span class="chip-dot"></span>
+          Curated for California foothills
+        </div>
+        <div class="chip">Source: Calscape (CNPS)</div>
+        <div class="chip">Use: Poolside screening, accents, groundcovers</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" aria-label="Plant table and filters">
+        <div class="card-header">
+          <div class="search-group">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                fill="none"
+              ></circle>
+              <line
+                x1="15.5"
+                y1="15.5"
+                x2="20"
+                y2="20"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              ></line>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Filter by common name, Latin name, or purpose…"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="pill" id="countPill">
+            Plants shown
+            <span class="pill-count" id="plantCount">0</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 32%">Plant</th>
+                <th style="width: 40%">Purpose / Replaces</th>
+                <th style="width: 28%">Calscape Page</th>
+              </tr>
+            </thead>
+            <tbody id="plantTableBody">
+              <!-- Rows injected by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const plants = [
+      {
+        commonName: "Deer Grass",
+        latinName: "Muhlenbergia rigens",
+        purpose: "Architectural clumping grass; replaces Cordyline and Phormium for clean structure.",
+        url: "https://calscape.org/Muhlenbergia-rigens"
+      },
+      {
+        commonName: "Alkali Sacaton",
+        latinName: "Sporobolus airoides",
+        purpose: "Structural grass for texture and movement; architectural accent.",
+        url: "https://calscape.org/Sporobolus-airoides"
+      },
+      {
+        commonName: "Hummingbird Sage",
+        latinName: "Salvia spathacea",
+        purpose: "Tropical-look flowering perennial; alternative to Hibiscus or Mandevilla in bright shade.",
+        url: "https://calscape.org/Salvia-spathacea"
+      },
+      {
+        commonName: "Western Sword Fern",
+        latinName: "Polystichum munitum",
+        purpose: "Lush evergreen fern; alternative to tree ferns in shaded pool corners.",
+        url: "https://calscape.org/Polystichum-munitum"
+      },
+      {
+        commonName: "California Dutchman’s Pipe",
+        latinName: "Aristolochia californica",
+        purpose: "Exotic native vine; alternative to Solandra or Beaumontia on fences or arbors.",
+        url: "https://calscape.org/Aristolochia-californica"
+      },
+      {
+        commonName: "Coffeeberry",
+        latinName: "Frangula californica (Rhamnus californica)",
+        purpose: "Clean evergreen shrub; replaces Pittosporum and Viburnum for screening.",
+        url: "https://calscape.org/Frangula-californica"
+      },
+      {
+        commonName: "Toyon",
+        latinName: "Heteromeles arbutifolia",
+        purpose: "Evergreen screening shrub with winter berries; alternative to Cleyera or Rhaphiolepis.",
+        url: "https://calscape.org/Heteromeles-arbutifolia"
+      },
+      {
+        commonName: "Cleveland Sage",
+        latinName: "Salvia clevelandii",
+        purpose: "Aromatic shrub; replaces Lavender or Lantana for fragrance and pollinators.",
+        url: "https://calscape.org/Salvia-clevelandii"
+      },
+      {
+        commonName: "Foothill Penstemon",
+        latinName: "Penstemon heterophyllus",
+        purpose: "Colorful perennial; alternative to Erysimum or other border bloomers.",
+        url: "https://calscape.org/Penstemon-heterophyllus"
+      },
+      {
+        commonName: "California Fuchsia",
+        latinName: "Epilobium canum",
+        purpose: "Trailing / mounding flowering groundcover; alternative to Scaevola near edges.",
+        url: "https://calscape.org/Epilobium-canum"
+      },
+      {
+        commonName: "Beach Strawberry",
+        latinName: "Fragaria chiloensis",
+        purpose: "Evergreen native groundcover; replaces Liriope or mondo grass near paving.",
+        url: "https://calscape.org/Fragaria-chiloensis"
+      },
+      {
+        commonName: "Dwarf Coyote Brush",
+        latinName: "Baccharis pilularis ‘Twin Peaks’ (prostrate form)",
+        purpose: "Clean evergreen mound; alternative to Santolina and other low shrubs.",
+        url: "https://calscape.org/Baccharis-pilularis-ssp.-pilularis-(prostrate-form)"
+      },
+      {
+        commonName: "Western Redbud",
+        latinName: "Cercis occidentalis",
+        purpose: "Small ornamental tree or espalier; alternative to Tabebuia or small flowering trees.",
+        url: "https://calscape.org/Cercis-occidentalis"
+      },
+      {
+        commonName: "Desert Willow",
+        latinName: "Chilopsis linearis",
+        purpose: "Small flowering tree with orchid-like blooms; replaces Tabebuia away from the shell.",
+        url: "https://calscape.org/Chilopsis-linearis"
+      }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const plantTableBody = document.getElementById("plantTableBody");
+    const plantCount = document.getElementById("plantCount");
+
+    function normalize(str) {
+      return str.toLowerCase();
+    }
+
+    function renderTable(filterText = "") {
+      const query = normalize(filterText.trim());
+      plantTableBody.innerHTML = "";
+
+      const filtered = plants.filter((p) => {
+        if (!query) return true;
+        const haystack =
+          normalize(p.commonName) +
+          " " +
+          normalize(p.latinName) +
+          " " +
+          normalize(p.purpose);
+        return haystack.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 3;
+        cell.className = "empty-row";
+        cell.textContent = "No plants match your search.";
+        row.appendChild(cell);
+        plantTableBody.appendChild(row);
+      } else {
+        for (const plant of filtered) {
+          const row = document.createElement("tr");
+
+          const nameCell = document.createElement("td");
+          nameCell.className = "name-cell";
+          nameCell.innerHTML =
+            plant.commonName +
+            `<span class="latin">${plant.latinName}</span>`;
+
+          const purposeCell = document.createElement("td");
+          purposeCell.className = "purpose-cell";
+          purposeCell.textContent = plant.purpose;
+
+          const linkCell = document.createElement("td");
+          linkCell.className = "link-cell";
+          const link = document.createElement("a");
+          link.href = plant.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = "View on Calscape";
+          linkCell.appendChild(link);
+
+          row.appendChild(nameCell);
+          row.appendChild(purposeCell);
+          row.appendChild(linkCell);
+
+          plantTableBody.appendChild(row);
+        }
+      }
+
+      plantCount.textContent = filtered.length.toString();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTable();
+
+      searchInput.addEventListener("input", () => {
+        renderTable(searchInput.value);
+      });
+    });
+  </script>
+</body>
+</html>
