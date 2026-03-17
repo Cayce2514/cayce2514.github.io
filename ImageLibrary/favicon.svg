@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Image Library favicon">
+  <defs>
+    <linearGradient id="bg" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#8dd3ff" />
+      <stop offset="100%" stop-color="#1f89c8" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+      <stop offset="100%" stop-color="#dff2ff" stop-opacity="0.96" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)" />
+  <rect x="13" y="16" width="26" height="30" rx="7" fill="#1071aa" opacity="0.45" />
+  <rect x="21" y="12" width="30" height="36" rx="8" fill="url(#card)" />
+  <circle cx="43" cy="21" r="4" fill="#1f89c8" />
+  <path d="M25 40l7-8 6 5 5-6 4 9H25z" fill="#4fb17d" />
+  <path d="M27 27.5c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5S32.4 31 30.5 31 27 29.4 27 27.5z" fill="#f6b24f" />
+</svg>
