@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="ocean">
+  <div class="app-shell">
+    <aside class="auth-panel glass-card">
+      <div class="brand-block">
+        <p class="eyebrow">Personal Cloud</p>
+        <h1>Image Library</h1>
+        <p class="lede">A clean, modern gallery inspired by photo-first libraries with a lightweight local demo flow.</p>
+      </div>
+
+      <form class="auth-form" id="auth-form">
+        <label class="field">
+          <span>User name</span>
+          <input type="text" id="username" placeholder="case.morrison" required>
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </label>
+
+        <label class="totp-toggle">
+          <input type="checkbox" id="use-totp">
+          <span>Use time-based one-time password</span>
+        </label>
+
+        <label class="field is-hidden" id="totp-field">
+          <span>TOTP code</span>
+          <input type="text" id="totp" inputmode="numeric" maxlength="6" placeholder="123456">
+        </label>
+
+        <button class="primary-button" type="submit">Sign in</button>
+        <p class="helper-text">Demo sign-in only. Uploaded images stay in your browser session.</p>
+      </form>
+
+      <section class="theme-card">
+        <div class="section-heading">
+          <h2>Color scheme</h2>
+          <p>Change the UI mood without leaving the library.</p>
+        </div>
+        <div class="theme-picker" role="radiogroup" aria-label="Theme picker">
+          <button class="theme-swatch is-active" type="button" data-theme="ocean" aria-label="Ocean theme">
+            <span></span>
+          </button>
+          <button class="theme-swatch" type="button" data-theme="sunset" aria-label="Sunset theme">
+            <span></span>
+          </button>
+          <button class="theme-swatch" type="button" data-theme="forest" aria-label="Forest theme">
+            <span></span>
+          </button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="library-shell">
+      <header class="topbar glass-card">
+        <div>
+          <p class="eyebrow">Library View</p>
+          <h2>Your images, organized by date</h2>
+        </div>
+
+        <div class="topbar-actions">
+          <label class="browse-button" for="file-input">Browse files</label>
+          <input id="file-input" type="file" accept="image/*" multiple hidden>
+        </div>
+      </header>
+
+      <section class="upload-panel glass-card" id="drop-zone" aria-label="Upload files">
+        <div class="upload-copy">
+          <p class="eyebrow">Quick import</p>
+          <h3>Drag and drop images here</h3>
+          <p>Or use the browse button to add one or many images at once.</p>
+        </div>
+        <div class="upload-meta">
+          <span>JPG</span>
+          <span>PNG</span>
+          <span>WEBP</span>
+          <span>GIF</span>
+        </div>
+      </section>
+
+      <section class="controls glass-card">
+        <div class="control-group">
+          <label for="size-range">Thumbnail size</label>
+          <input id="size-range" type="range" min="0" max="2" value="1" step="1">
+          <div class="size-labels">
+            <span>Small</span>
+            <span>Medium</span>
+            <span>Large</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="sort-order">Sort by date</label>
+          <select id="sort-order">
+            <option value="desc">Most recent first</option>
+            <option value="asc">Oldest first</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="gallery-layout">
+        <aside class="timeline glass-card" aria-label="Timeline navigation">
+          <div class="timeline-header">
+            <p class="eyebrow">Timeline</p>
+            <p id="timeline-mode">Year jump</p>
+          </div>
+          <nav id="timeline-nav" class="timeline-nav"></nav>
+        </aside>
+
+        <section class="gallery-panel glass-card">
+          <div class="gallery-header">
+            <div>
+              <p class="eyebrow">Collection</p>
+              <h3 id="image-count">0 images</h3>
+            </div>
+            <p class="helper-text">Zoom out for year navigation and zoom in for closer date jumps.</p>
+          </div>
+
+          <div id="gallery-groups" class="gallery-groups"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <template id="group-template">
+    <section class="date-group">
+      <header class="group-header">
+        <h4 class="group-title"></h4>
+        <p class="group-meta"></p>
+      </header>
+      <div class="image-grid"></div>
+    </section>
+  </template>
+
+  <template id="card-template">
+    <article class="image-card">
+      <img alt="">
+      <div class="image-card-copy">
+        <strong class="image-title"></strong>
+        <span class="image-date"></span>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
