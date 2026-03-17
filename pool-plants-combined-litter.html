@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Poolside Plants – Combined List (Native, Non-native, Litter)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --native-bg: rgba(34, 197, 94, 0.12);
+      --native-border: rgba(34, 197, 94, 0.7);
+      --non-native-bg: rgba(148, 163, 184, 0.12);
+      --non-native-border: rgba(148, 163, 184, 0.7);
+      --litter-low-bg: rgba(34, 197, 94, 0.11);
+      --litter-low-border: rgba(34, 197, 94, 0.7);
+      --litter-mod-bg: rgba(234, 179, 8, 0.12);
+      --litter-mod-border: rgba(234, 179, 8, 0.7);
+      --litter-high-bg: rgba(239, 68, 68, 0.12);
+      --litter-high-border: rgba(239, 68, 68, 0.7);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #020617 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header { margin-bottom: 24px; }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 4px 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 900px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid #111827;
+      background: #020617;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 20px;
+      border: 1px solid #1f2937;
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .search-group {
+      flex: 1 1 260px;
+      position: relative;
+    }
+
+    .search-group input {
+      width: 100%;
+      padding: 10px 12px 10px 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .search-group input::placeholder { color: #6b7280; }
+
+    .search-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #020617;
+      white-space: nowrap;
+    }
+
+    .pill-count {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+    }
+
+    .table-wrapper {
+      max-height: 72vh;
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      min-width: 1180px;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #020617;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid #0f172a;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: 600;
+      color: #9ca3af;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tbody tr:hover { background: rgba(15, 23, 42, 0.7); }
+
+    .img-cell { width: 72px; }
+
+    .plant-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #1f2937;
+      background: #020617;
+      display: block;
+    }
+
+    .name-cell {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .latin {
+      display: block;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    .category-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: var(--text-muted);
+    }
+
+    .native-pill, .non-native-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      gap: 4px;
+    }
+
+    .native-pill {
+      background: var(--native-bg);
+      border: 1px solid var(--native-border);
+      color: #bbf7d0;
+    }
+
+    .native-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .non-native-pill {
+      background: var(--non-native-bg);
+      border: 1px solid var(--non-native-border);
+      color: #e5e7eb;
+    }
+
+    .non-native-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #9ca3af;
+    }
+
+    .litter-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      gap: 4px;
+    }
+
+    .litter-pill.low {
+      background: var(--litter-low-bg);
+      border: 1px solid var(--litter-low-border);
+      color: #bbf7d0;
+    }
+
+    .litter-pill.moderate {
+      background: var(--litter-mod-bg);
+      border: 1px solid var(--litter-mod-border);
+      color: #facc15;
+    }
+
+    .litter-pill.high {
+      background: var(--litter-high-bg);
+      border: 1px solid var(--litter-high-border);
+      color: #fecaca;
+    }
+
+    .litter-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .litter-dot.low { background: #22c55e; }
+    .litter-dot.moderate { background: #eab308; }
+    .litter-dot.high { background: #ef4444; }
+
+    .link-cell a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-bottom: 1px dashed rgba(56, 189, 248, 0.5);
+      padding-bottom: 1px;
+    }
+
+    .link-cell a:hover { border-bottom-style: solid; }
+
+    .empty-row {
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.5rem; }
+      .card { padding: 14px 12px 12px; }
+      .table-wrapper { max-height: 65vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Poolside Plants – Combined List (Native, Non-native, Litter)</h1>
+      <p>
+        Original poolside palette plus California native substitutes, with an added litter
+        characteristic (<strong>Low</strong>, <strong>Moderate</strong>, <strong>High</strong>) to help decide how close to the pool each plant should go.
+      </p>
+      <div class="chips">
+        <div class="chip">
+          <span class="chip-dot"></span>
+          Native & non-native in one table
+        </div>
+        <div class="chip">Zone 9b · Poolside context</div>
+        <div class="chip">Filter by “native”, “low litter”, “full sun”, “low water”, etc.</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" aria-label="Combined plant table and filters">
+        <div class="card-header">
+          <div class="search-group">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                fill="none"
+              ></circle>
+              <line
+                x1="15.5"
+                y1="15.5"
+                x2="20"
+                y2="20"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              ></line>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Filter by name, 'native', 'low litter', category, sun, or water…"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="pill" id="countPill">
+            Plants shown
+            <span class="pill-count" id="plantCount">0</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Img</th>
+                <th>Plant</th>
+                <th>Category</th>
+                <th>Native?</th>
+                <th>Litter</th>
+                <th>Size (H × W)</th>
+                <th>Evergreen?</th>
+                <th>Sun</th>
+                <th>Water</th>
+                <th>Info</th>
+              </tr>
+            </thead>
+            <tbody id="plantTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function buildImageUrl(query) {
+      const encoded = encodeURIComponent(query);
+      return `https://source.unsplash.com/160x160/?${encoded}`;
+    }
+
+    // ORIGINAL (NON-NATIVE) POOLSIDE PLANTS
+    const originalPlants = [
+      // Tree-like
+      {
+        commonName: "Cordyline",
+        latinName: "Cordyline spp.",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Cordyline_(plant)",
+        imageQuery: "cordyline plant",
+        size: "6–20 ft × 3–8 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Dracaena",
+        latinName: "Dracaena spp.",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Dracaena_(plant)",
+        imageQuery: "dracaena marginata",
+        size: "6–15 ft × 3–8 ft",
+        evergreen: "Evergreen",
+        sun: "Bright shade–part sun",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Abyssinian Banana",
+        latinName: "Ensete ventricosum",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Ensete_ventricosum",
+        imageQuery: "ensete ventricosum",
+        size: "10–20 ft × 6–12 ft",
+        evergreen: "Evergreen in mild climates",
+        sun: "Full sun–light shade",
+        water: "Moderate–high",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Bronze Loquat",
+        latinName: "Eriobotrya deflexa",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Eriobotrya_deflexa",
+        imageQuery: "eriobotrya deflexa",
+        size: "15–25 ft × 15–20 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Tree Ferns",
+        latinName: "e.g., Dicksonia, Cyathea spp.",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Tree_fern",
+        imageQuery: "tree fern garden",
+        size: "8–25 ft × 6–10 ft",
+        evergreen: "Evergreen",
+        sun: "Shade–bright shade",
+        water: "Moderate–high",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Roxburgh Fig",
+        latinName: "Ficus auriculata",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Ficus_auriculata",
+        imageQuery: "ficus auriculata",
+        size: "15–30 ft × 15–25 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Moderate",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Australian Willow",
+        latinName: "Geijera parviflora",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Geijera_parviflora",
+        imageQuery: "geijera parviflora",
+        size: "20–30 ft × 15–25 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Banana",
+        latinName: "Musa spp.",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Musa_(plant)",
+        imageQuery: "banana plant",
+        size: "8–20 ft × 6–12 ft",
+        evergreen: "Evergreen in frost-free zones",
+        sun: "Full sun–light shade",
+        water: "Moderate–high",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Palms (some)",
+        latinName: "various genera",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Arecaceae",
+        imageQuery: "palm tree garden",
+        size: "10–40+ ft × 8–20 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Majestic Beauty Rhaphiolepis",
+        latinName: "Rhaphiolepis × ‘Majestic Beauty’",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Rhaphiolepis",
+        imageQuery: "rhaphiolepis shrub",
+        size: "8–12 ft × 6–10 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Schefflera",
+        latinName: "Schefflera actinophylla group",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Schefflera",
+        imageQuery: "schefflera actinophylla tree",
+        size: "10–30 ft × 8–15 ft",
+        evergreen: "Evergreen",
+        sun: "Bright shade–part sun",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Golden Trumpet Tree",
+        latinName: "Tabebuia chrysotricha",
+        category: "Tree-like",
+        infoUrl: "https://en.wikipedia.org/wiki/Handroanthus_chrysotrichus",
+        imageQuery: "tabebuia chrysotricha",
+        size: "15–25 ft × 15–20 ft",
+        evergreen: "Deciduous / briefly leafless",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "High",
+        isNative: false
+      },
+
+      // Shrubs
+      {
+        commonName: "Camellia",
+        latinName: "Camellia japonica and hybrids",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Camellia_japonica",
+        imageQuery: "camellia japonica flower",
+        size: "6–12 ft × 4–8 ft",
+        evergreen: "Evergreen",
+        sun: "Part shade",
+        water: "Moderate",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Fatsia",
+        latinName: "Fatsia japonica",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Fatsia_japonica",
+        imageQuery: "fatsia japonica",
+        size: "5–10 ft × 5–10 ft",
+        evergreen: "Evergreen",
+        sun: "Shade–part shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Pineapple Guava",
+        latinName: "Feijoa sellowiana (Acca sellowiana)",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Feijoa",
+        imageQuery: "feijoa shrub",
+        size: "8–15 ft × 8–15 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Hibiscus",
+        latinName: "Hibiscus rosa-sinensis and cultivars",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Hibiscus_rosa-sinensis",
+        imageQuery: "hibiscus rosa-sinensis",
+        size: "6–10 ft × 4–8 ft",
+        evergreen: "Evergreen (mild climates)",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Hydrangea",
+        latinName: "Hydrangea macrophylla and others",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Hydrangea_macrophylla",
+        imageQuery: "hydrangea macrophylla",
+        size: "4–8 ft × 4–8 ft",
+        evergreen: "Deciduous / semi-evergreen",
+        sun: "Morning sun–part shade",
+        water: "Moderate–high",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Juniper (some)",
+        latinName: "Juniperus spp.",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Juniper",
+        imageQuery: "juniper shrub",
+        size: "2–10 ft × 3–12 ft (varies)",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Lantana",
+        latinName: "Lantana camara and hybrids",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Lantana_camara",
+        imageQuery: "lantana camara",
+        size: "2–4 ft × 3–6 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Lavender",
+        latinName: "Lavandula spp.",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Lavandula",
+        imageQuery: "lavender hedge",
+        size: "1–3 ft × 2–4 ft",
+        evergreen: "Evergreen / subshrub",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Dwarf Pittosporum",
+        latinName: "Pittosporum tobira ‘Wheeler’s Dwarf’",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Pittosporum_tobira",
+        imageQuery: "pittosporum tobira hedge",
+        size: "2–3 ft × 3–4 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Cleyera",
+        latinName: "Ternstroemia gymnanthera",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Ternstroemia_gymnanthera",
+        imageQuery: "ternstroemia gymnanthera",
+        size: "6–10 ft × 4–6 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "David Viburnum",
+        latinName: "Viburnum davidii",
+        category: "Shrub",
+        infoUrl: "https://en.wikipedia.org/wiki/Viburnum_davidii",
+        imageQuery: "viburnum davidii",
+        size: "2–4 ft × 3–5 ft",
+        evergreen: "Evergreen",
+        sun: "Part shade–full sun",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+
+      // Vines
+      {
+        commonName: "Herald’s Trumpet Vine",
+        latinName: "Beaumontia grandiflora",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/Beaumontia_grandiflora",
+        imageQuery: "beaumontia grandiflora",
+        size: "15–30 ft (climbing)",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Fatshedera",
+        latinName: "× Fatshedera lizei",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/%C3%97_Fatshedera",
+        imageQuery: "fatshedera lizei",
+        size: "6–10 ft × 3–6 ft",
+        evergreen: "Evergreen",
+        sun: "Part shade–shade",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Giant Burmese Honeysuckle",
+        latinName: "Lonicera hildebrandiana",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/Lonicera_hildebrandiana",
+        imageQuery: "lonicera hildebrandiana",
+        size: "15–30 ft (climbing)",
+        evergreen: "Evergreen in mild climates",
+        sun: "Full sun–part shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Mandevilla",
+        latinName: "Mandevilla spp.",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/Mandevilla",
+        imageQuery: "mandevilla vine",
+        size: "6–15 ft (climbing)",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Cup-of-Gold Vine",
+        latinName: "Solandra maxima",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/Solandra_maxima",
+        imageQuery: "solandra maxima flower",
+        size: "15–40 ft (climbing)",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Chestnut Vine",
+        latinName: "Tetrastigma voinierianum",
+        category: "Vine",
+        infoUrl: "https://en.wikipedia.org/wiki/Tetrastigma_voinierianum",
+        imageQuery: "tetrastigma voinierianum",
+        size: "15–25 ft (climbing)",
+        evergreen: "Evergreen (indoors / mild)",
+        sun: "Bright shade–part shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+
+      // Perennials / Groundcovers
+      {
+        commonName: "Agapanthus",
+        latinName: "Agapanthus africanus and hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Agapanthus",
+        imageQuery: "agapanthus flower",
+        size: "2–4 ft × 2–3 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Foxtail Agave",
+        latinName: "Agave attenuata",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Agave_attenuata",
+        imageQuery: "agave attenuata",
+        size: "3–5 ft × 4–6 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Aloe (various)",
+        latinName: "Aloe spp.",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Aloe",
+        imageQuery: "aloe plant",
+        size: "1–5 ft × 1–4 ft (varies)",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Alstroemeria",
+        latinName: "Alstroemeria hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Alstroemeria",
+        imageQuery: "alstroemeria flowers",
+        size: "1–3 ft × 1–2 ft",
+        evergreen: "Evergreen / deciduous",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Kangaroo Paw",
+        latinName: "Anigozanthos flavidus",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Anigozanthos_flavidus",
+        imageQuery: "anigozanthos flavidus",
+        size: "3–6 ft × 2–3 ft",
+        evergreen: "Evergreen / clumping",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Powis Castle Artemisia",
+        latinName: "Artemisia ‘Powis Castle’",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Artemisia_arborescens#Cultivars",
+        imageQuery: "artemisia powis castle",
+        size: "2–3 ft × 3–5 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Cast Iron Plant",
+        latinName: "Aspidistra elatior",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Aspidistra_elatior",
+        imageQuery: "aspidistra elatior",
+        size: "1.5–2.5 ft × 2–3 ft",
+        evergreen: "Evergreen",
+        sun: "Shade–deep shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Canna",
+        latinName: "Canna indica and hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Canna_(plant)",
+        imageQuery: "canna lily",
+        size: "3–6 ft × 2–3 ft",
+        evergreen: "Deciduous / semi-evergreen",
+        sun: "Full sun",
+        water: "Moderate–high",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Clivia",
+        latinName: "Clivia miniata",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Clivia_miniata",
+        imageQuery: "clivia miniata",
+        size: "1.5–2.5 ft × 2–3 ft",
+        evergreen: "Evergreen",
+        sun: "Bright shade",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Elephant Ear",
+        latinName: "Colocasia esculenta",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Colocasia_esculenta",
+        imageQuery: "colocasia esculenta",
+        size: "3–6 ft × 3–6 ft",
+        evergreen: "Evergreen / dies back with frost",
+        sun: "Full sun–part shade",
+        water: "High",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Jade Plant",
+        latinName: "Crassula ovata",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Crassula_ovata",
+        imageQuery: "crassula ovata",
+        size: "2–6 ft × 2–4 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–bright shade",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Umbrella Sedge",
+        latinName: "Cyperus alternifolius and relatives",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Cyperus_alternifolius",
+        imageQuery: "cyperus alternifolius",
+        size: "2–4 ft × 2–3 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun–part shade",
+        water: "High",
+        litter: "High",
+        isNative: false
+      },
+      {
+        commonName: "Dianella",
+        latinName: "Dianella tasmanica",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Dianella_tasmanica",
+        imageQuery: "dianella tasmanica",
+        size: "1.5–3 ft × 2–3 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Fortnight Lily",
+        latinName: "Dietes grandiflora / Dietes iridioides",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Dietes_iridioides",
+        imageQuery: "dietes grandiflora",
+        size: "2–4 ft × 2–3 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Bowles Mauve Wallflower",
+        latinName: "Erysimum ‘Bowles Mauve’",
+        category: "Perennial",
+        infoUrl: "https://www.rhs.org.uk/plants/74276/erysimum-bowles-s-mauve/details",
+        imageQuery: "erysimum bowles mauve",
+        size: "2–3 ft × 2–3 ft",
+        evergreen: "Evergreen / short-lived perennial",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Gazania",
+        latinName: "Gazania rigens and hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Gazania_rigens",
+        imageQuery: "gazania rigens",
+        size: "0.5–1 ft × 1–2 ft",
+        evergreen: "Evergreen / perennial",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Ginger Lily",
+        latinName: "Hedychium spp.",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Hedychium",
+        imageQuery: "hedychium gardnerianum",
+        size: "3–6 ft × 2–4 ft",
+        evergreen: "Deciduous / rhizomatous",
+        sun: "Part shade–full sun",
+        water: "Moderate–high",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Daylily",
+        latinName: "Hemerocallis spp.",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Hemerocallis",
+        imageQuery: "hemerocallis daylily",
+        size: "1.5–3 ft × 1.5–3 ft",
+        evergreen: "Evergreen / semi-evergreen / dormant",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Red Yucca",
+        latinName: "Hesperaloe parviflora",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Hesperaloe_parviflora",
+        imageQuery: "hesperaloe parviflora",
+        size: "2–3 ft × 3–4 ft; 4–6 ft flower spikes",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Red Hot Poker",
+        latinName: "Kniphofia uvaria and hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Kniphofia",
+        imageQuery: "kniphofia uvaria",
+        size: "2–4 ft × 2–3 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Sea Lavender",
+        latinName: "Limonium perezii",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Limonium_perezii",
+        imageQuery: "limonium perezii",
+        size: "1.5–2.5 ft × 2–3 ft",
+        evergreen: "Evergreen / perennial",
+        sun: "Full sun",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Lilyturf / Mondo Grass",
+        latinName: "Liriope muscari, Ophiopogon japonicus",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Liriope_(plant)",
+        imageQuery: "liriope muscari border",
+        size: "0.75–1.5 ft × 1–2 ft",
+        evergreen: "Evergreen",
+        sun: "Part shade–full shade",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Tree Philodendron",
+        latinName: "Philodendron (treelike types)",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Philodendron_bipinnatifidum",
+        imageQuery: "philodendron bipinnatifidum",
+        size: "6–10 ft × 6–10 ft",
+        evergreen: "Evergreen (frost-free)",
+        sun: "Bright shade–part shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Phlomis",
+        latinName: "Phlomis fruticosa and kin",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Phlomis_fruticosa",
+        imageQuery: "phlomis fruticosa",
+        size: "3–4 ft × 3–5 ft",
+        evergreen: "Evergreen / subshrub",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "New Zealand Flax",
+        latinName: "Phormium tenax and cultivars",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Phormium_tenax",
+        imageQuery: "phormium tenax",
+        size: "3–10 ft × 3–8 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Santolina",
+        latinName: "Santolina chamaecyparissus",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Santolina_chamaecyparissus",
+        imageQuery: "santolina chamaecyparissus",
+        size: "1–2 ft × 2–3 ft",
+        evergreen: "Evergreen / subshrub",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Scaevola",
+        latinName: "Scaevola aemula and hybrids",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Scaevola_aemula",
+        imageQuery: "scaevola aemula",
+        size: "0.5–1.5 ft × 1–2 ft (trailing)",
+        evergreen: "Evergreen (mild climates)",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Low",
+        isNative: false
+      },
+      {
+        commonName: "Bird of Paradise",
+        latinName: "Strelitzia reginae and relatives",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Strelitzia_reginae",
+        imageQuery: "strelitzia reginae",
+        size: "3–5 ft × 3–5 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–light shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: false
+      },
+      {
+        commonName: "Yucca (some)",
+        latinName: "Yucca spp.",
+        category: "Perennial",
+        infoUrl: "https://en.wikipedia.org/wiki/Yucca",
+        imageQuery: "yucca plant",
+        size: "2–10 ft × 2–6 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: false
+      }
+    ];
+
+    // NATIVE CALIFORNIA POOL-SAFE PLANTS
+    const nativePlants = [
+      {
+        commonName: "Deer Grass",
+        latinName: "Muhlenbergia rigens",
+        category: "Perennial/Grass",
+        infoUrl: "https://calscape.org/Muhlenbergia-rigens-%28Deergrass%29",
+        imageQuery: "muhlenbergia rigens",
+        size: "3–4 ft × 3–4 ft",
+        evergreen: "Semi-evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Alkali Sacaton",
+        latinName: "Sporobolus airoides",
+        category: "Perennial/Grass",
+        infoUrl: "https://calscape.org/Sporobolus-airoides-%28Alkali-Sacaton%29",
+        imageQuery: "sporobolus airoides grass",
+        size: "2–4 ft × 2–3 ft",
+        evergreen: "Semi-evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Hummingbird Sage",
+        latinName: "Salvia spathacea",
+        category: "Perennial",
+        infoUrl: "https://calscape.org/Salvia-spathacea-%28Hummingbird-Sage%29",
+        imageQuery: "salvia spathacea",
+        size: "1–2 ft × 3–4 ft",
+        evergreen: "Semi-evergreen",
+        sun: "Part shade–light sun",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Western Sword Fern",
+        latinName: "Polystichum munitum",
+        category: "Perennial/Fern",
+        infoUrl: "https://calscape.org/Polystichum-munitum-%28Western-Sword-Fern%29",
+        imageQuery: "polystichum munitum",
+        size: "2–4 ft × 2–4 ft",
+        evergreen: "Evergreen",
+        sun: "Shade–part shade",
+        water: "Moderate",
+        litter: "Moderate",
+        isNative: true
+      },
+      {
+        commonName: "California Dutchman’s Pipe",
+        latinName: "Aristolochia californica",
+        category: "Vine",
+        infoUrl: "https://calscape.org/Aristolochia-californica",
+        imageQuery: "aristolochia californica",
+        size: "10–20 ft (climbing)",
+        evergreen: "Deciduous",
+        sun: "Part shade–sun",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: true
+      },
+      {
+        commonName: "Coffeeberry",
+        latinName: "Frangula californica",
+        category: "Shrub",
+        infoUrl: "https://calscape.org/Frangula-californica-%28Coffeeberry%29",
+        imageQuery: "frangula californica",
+        size: "4–10 ft × 4–10 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Toyon",
+        latinName: "Heteromeles arbutifolia",
+        category: "Shrub",
+        infoUrl: "https://calscape.org/Heteromeles-arbutifolia-%28Toyon%29",
+        imageQuery: "heteromeles arbutifolia",
+        size: "8–15 ft × 8–15 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low",
+        litter: "Moderate",
+        isNative: true
+      },
+      {
+        commonName: "Cleveland Sage",
+        latinName: "Salvia clevelandii",
+        category: "Shrub",
+        infoUrl: "https://calscape.org/Salvia-clevelandii-%28Cleveland-Sage%29",
+        imageQuery: "salvia clevelandii",
+        size: "3–5 ft × 4–6 ft",
+        evergreen: "Evergreen / subshrub",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Foothill Penstemon",
+        latinName: "Penstemon heterophyllus",
+        category: "Perennial",
+        infoUrl: "https://calscape.org/Penstemon-heterophyllus-%28Foothill-Penstemon%29",
+        imageQuery: "penstemon heterophyllus",
+        size: "1–2 ft × 1–3 ft",
+        evergreen: "Evergreen / semi-evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "California Fuchsia",
+        latinName: "Epilobium canum",
+        category: "Perennial/Groundcover",
+        infoUrl: "https://calscape.org/Epilobium-canum-%28California-Fuchsia%29",
+        imageQuery: "epilobium canum",
+        size: "0.75–2 ft × 2–4 ft",
+        evergreen: "Semi-evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Beach Strawberry",
+        latinName: "Fragaria chiloensis",
+        category: "Groundcover",
+        infoUrl: "https://calscape.org/Fragaria-chiloensis-%28Beach-Strawberry%29",
+        imageQuery: "fragaria chiloensis groundcover",
+        size: "0.25–0.5 ft × spreading",
+        evergreen: "Evergreen",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Dwarf Coyote Brush",
+        latinName: "Baccharis pilularis 'Twin Peaks'",
+        category: "Shrub/Groundcover",
+        infoUrl: "https://calscape.org/Baccharis-pilularis-%27Twin-Peaks-No.-2%27-%28Twin-Peaks-No.-2-Dwarf-Coyote-Brush%29",
+        imageQuery: "baccharis pilularis groundcover",
+        size: "1–2 ft × 6–10 ft",
+        evergreen: "Evergreen",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Low",
+        isNative: true
+      },
+      {
+        commonName: "Western Redbud",
+        latinName: "Cercis occidentalis",
+        category: "Tree-like",
+        infoUrl: "https://calscape.org/Cercis-occidentalis-%28Western-Redbud%29",
+        imageQuery: "cercis occidentalis",
+        size: "10–18 ft × 10–15 ft",
+        evergreen: "Deciduous",
+        sun: "Full sun–part shade",
+        water: "Low–moderate",
+        litter: "Moderate",
+        isNative: true
+      },
+      {
+        commonName: "Desert Willow",
+        latinName: "Chilopsis linearis",
+        category: "Tree-like",
+        infoUrl: "https://calscape.org/Chilopsis-linearis-%28Desert-Willow%29",
+        imageQuery: "chilopsis linearis",
+        size: "15–25 ft × 10–20 ft",
+        evergreen: "Deciduous",
+        sun: "Full sun",
+        water: "Low",
+        litter: "Moderate",
+        isNative: true
+      }
+    ];
+
+    const plants = originalPlants.concat(nativePlants);
+
+    const searchInput = document.getElementById("searchInput");
+    const plantTableBody = document.getElementById("plantTableBody");
+    const plantCount = document.getElementById("plantCount");
+
+    function normalize(str) {
+      return (str || "").toLowerCase();
+    }
+
+    function renderTable(filterText = "") {
+      const query = normalize(filterText.trim());
+      plantTableBody.innerHTML = "";
+
+      const filtered = plants.filter((p) => {
+        if (!query) return true;
+        const nativeLabel = p.isNative ? "native california native ca" : "non-native exotic";
+        const litterLabel = (p.litter || "").toLowerCase() + " litter";
+        const haystack = [
+          p.commonName,
+          p.latinName,
+          p.category,
+          p.size,
+          p.evergreen,
+          p.sun,
+          p.water,
+          nativeLabel,
+          litterLabel
+        ]
+          .map(normalize)
+          .join(" ");
+        return haystack.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 10;
+        cell.className = "empty-row";
+        cell.textContent = "No plants match your search.";
+        row.appendChild(cell);
+        plantTableBody.appendChild(row);
+      } else {
+        for (const plant of filtered) {
+          const row = document.createElement("tr");
+
+          // Image
+          const imgCell = document.createElement("td");
+          imgCell.className = "img-cell";
+          const img = document.createElement("img");
+          img.className = "plant-img";
+          img.alt = plant.commonName;
+          img.src = buildImageUrl(plant.imageQuery || plant.commonName);
+          imgCell.appendChild(img);
+
+          // Name
+          const nameCell = document.createElement("td");
+          nameCell.className = "name-cell";
+          nameCell.innerHTML =
+            plant.commonName +
+            (plant.latinName ? `<span class="latin">${plant.latinName}</span>` : "");
+
+          // Category
+          const catCell = document.createElement("td");
+          const catPill = document.createElement("span");
+          catPill.className = "category-pill";
+          catPill.textContent = plant.category;
+          catCell.appendChild(catPill);
+
+          // Native / Non-native
+          const nativeCell = document.createElement("td");
+          const nativePill = document.createElement("span");
+          if (plant.isNative) {
+            nativePill.className = "native-pill";
+            const dot = document.createElement("span");
+            dot.className = "native-dot";
+            nativePill.appendChild(dot);
+            nativePill.appendChild(document.createTextNode("Native (CA)"));
+          } else {
+            nativePill.className = "non-native-pill";
+            const dot = document.createElement("span");
+            dot.className = "non-native-dot";
+            nativePill.appendChild(dot);
+            nativePill.appendChild(document.createTextNode("Non-native"));
+          }
+          nativeCell.appendChild(nativePill);
+
+          // Litter
+          const litterCell = document.createElement("td");
+          const litterPill = document.createElement("span");
+          const litterVal = (plant.litter || "").toLowerCase();
+          litterPill.classList.add("litter-pill");
+          if (litterVal === "low") {
+            litterPill.classList.add("low");
+          } else if (litterVal === "high") {
+            litterPill.classList.add("high");
+          } else {
+            litterPill.classList.add("moderate");
+          }
+          const litterDot = document.createElement("span");
+          litterDot.classList.add("litter-dot");
+          if (litterVal === "low") litterDot.classList.add("low");
+          else if (litterVal === "high") litterDot.classList.add("high");
+          else litterDot.classList.add("moderate");
+          litterPill.appendChild(litterDot);
+          litterPill.appendChild(document.createTextNode(plant.litter || "Moderate"));
+          litterCell.appendChild(litterPill);
+
+          // Size
+          const sizeCell = document.createElement("td");
+          sizeCell.textContent = plant.size || "—";
+
+          // Evergreen / Deciduous
+          const evCell = document.createElement("td");
+          evCell.textContent = plant.evergreen || "—";
+
+          // Sun
+          const sunCell = document.createElement("td");
+          sunCell.textContent = plant.sun || "—";
+
+          // Water
+          const waterCell = document.createElement("td");
+          waterCell.textContent = plant.water || "—";
+
+          // Info link
+          const linkCell = document.createElement("td");
+          linkCell.className = "link-cell";
+          if (plant.infoUrl) {
+            const a = document.createElement("a");
+            a.href = plant.infoUrl;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = plant.isNative ? "Calscape / Info" : "More info";
+            linkCell.appendChild(a);
+          } else {
+            linkCell.textContent = "—";
+          }
+
+          row.appendChild(imgCell);
+          row.appendChild(nameCell);
+          row.appendChild(catCell);
+          row.appendChild(nativeCell);
+          row.appendChild(litterCell);
+          row.appendChild(sizeCell);
+          row.appendChild(evCell);
+          row.appendChild(sunCell);
+          row.appendChild(waterCell);
+          row.appendChild(linkCell);
+
+          plantTableBody.appendChild(row);
+        }
+      }
+
+      plantCount.textContent = filtered.length.toString();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTable();
+      searchInput.addEventListener("input", () => {
+        renderTable(searchInput.value);
+      });
+    });
+  </script>
+</body>
+</html>
